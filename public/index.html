@@ -45,8 +45,6 @@
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="alternate icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
 <!-- Fonts -->
@@ -63,7 +61,7 @@
   "url": "https://madebypaolo.it/",
   "image": "https://madebypaolo.it/images/og-image.png",
   "jobTitle": "Freelance Web & Mobile App Developer",
-  "email": "mailto:ciao@madebypaolo.it",
+  "email": "mailto:studio@madebypaolo.it",
   "nationality": "Italian",
   "knowsLanguage": ["it", "en"],
   "knowsAbout": ["Web Development", "iOS Development", "Android Development", "UX Design", "SwiftUI", "React"],
@@ -82,7 +80,7 @@
   "image": "https://madebypaolo.it/images/og-image.png",
   "url": "https://madebypaolo.it/",
   "telephone": "",
-  "email": "ciao@madebypaolo.it",
+  "email": "studio@madebypaolo.it",
   "priceRange": "€€",
   "areaServed": {
     "@type": "Country",
@@ -558,7 +556,7 @@ button { font: inherit; }
     </div>
     <p class="contact-alt reveal d4">
       <span data-i18n="contact.alt">oppure scrivi direttamente a</span>
-      <a href="mailto:ciao@madebypaolo.it">ciao@madebypaolo.it</a>
+      <a href="mailto:studio@madebypaolo.it">studio@madebypaolo.it</a>
     </p>
   </div>
 </section>
@@ -623,6 +621,7 @@ const COPY = {
       consentEnd: 'e acconsento al trattamento dei miei dati per essere ricontattato.',
       successTitle: 'Messaggio inviato!', successSub: 'Ti rispondo al più presto. A presto, Paolo.',
       alt: 'oppure scrivi direttamente a',
+      errorGeneric: 'Errore di invio. Riprova tra qualche minuto o scrivimi direttamente a studio@madebypaolo.it.',
     },
     footer: { copy: '© {year} Paolo Ferrari · Tutti i diritti riservati', privacy: 'Privacy Policy' },
   },
@@ -676,6 +675,7 @@ const COPY = {
       consentEnd: 'and consent to the processing of my data so I can be contacted back.',
       successTitle: 'Message sent!', successSub: "I'll get back to you soon. Talk soon, Paolo.",
       alt: 'or email me directly at',
+      errorGeneric: 'Submission failed. Please try again in a few minutes, or email me directly at studio@madebypaolo.it.',
     },
     footer: { copy: '© {year} Paolo Ferrari · All rights reserved', privacy: 'Privacy Policy' },
   },
@@ -808,7 +808,7 @@ const form = document.getElementById('contact-form');
 const submitBtn = document.getElementById('submit-btn');
 const successBox = document.getElementById('success-box');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const data = new FormData(form);
   // Honeypot: if the hidden field is filled, silently drop (bot)
@@ -825,13 +825,22 @@ form.addEventListener('submit', (e) => {
   if (!name || !email || !emailValid || !msg || !consent) return;
   submitBtn.disabled = true;
   submitBtn.textContent = COPY[lang].contact.sending;
-  // TODO: wire up a real endpoint (Formspree, Netlify Forms, custom backend).
-  // For now this only simulates success client-side — no data leaves the browser.
-  setTimeout(() => {
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, message: msg, consent: true, website: '' }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     form.style.display = 'none';
     successBox.style.display = 'block';
     successBox.classList.add('in');
-  }, 1600);
+  } catch (err) {
+    console.error('Contact submission failed:', err);
+    submitBtn.disabled = false;
+    submitBtn.textContent = COPY[lang].contact.send;
+    alert(COPY[lang].contact.errorGeneric || 'Errore di invio. Riprova o scrivimi via email.');
+  }
 });
 
 ['name','email','msg'].forEach(n => {
