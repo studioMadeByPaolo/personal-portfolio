@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paolo Ferrari — madebypaolo.it</title>
+<meta name="description" content="Sviluppo siti web e app mobile moderni. Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F5F1;
+  --bg2: #EEEAE3;
+  --bg-dark: #171410;
+  --text: #1C1917;
+  --text-muted: #7C7268;
+  --text-light: #B8B0A8;
+  --accent: #C05728;
+  --accent-rgb: 192, 87, 40;
+  --border: #E2DDD6;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 2px 8px rgba(28,25,23,.06), 0 1px 3px rgba(28,25,23,.04);
+  --shadow-lg: 0 24px 64px rgba(28,25,23,.10);
+  --pad: clamp(24px, 6vw, 88px);
+  --section: clamp(80px, 10vw, 128px);
+  --max-w: 1200px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+/* section labels */
+.label { font-size: .72rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: block; }
+.section-h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; color: var(--text); }
+
+/* buttons */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .4em;
+  padding: 11px 24px; background: var(--accent); color: #fff;
+  font-family: var(--font-body); font-size: .875rem; font-weight: 500;
+  border-radius: 100px; border: none; cursor: pointer;
+  transition: filter .2s, transform .15s;
+}
+.btn-primary:hover { filter: brightness(.88); transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .4em;
+  padding: 11px 24px; background: transparent; color: var(--text);
+  font-family: var(--font-body); font-size: .875rem; font-weight: 500;
+  border-radius: 100px; border: 1.5px solid var(--border); cursor: pointer;
+  transition: border-color .2s, background .2s, transform .15s;
+}
+.btn-ghost:hover { border-color: var(--text-muted); background: var(--bg2); transform: translateY(-1px); }
+.btn-outline-light {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; background: transparent; color: rgba(255,255,255,.75);
+  font-family: var(--font-body); font-size: .8125rem; font-weight: 500;
+  border-radius: 100px; border: 1.5px solid rgba(255,255,255,.14); cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.btn-outline-light:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.07); }
+.btn-sm { padding: 9px 18px; font-size: .8125rem; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px var(--pad);
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .3s, box-shadow .3s;
+}
+.nav.scrolled { background: rgba(247,245,241,.9); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--border); }
+.nav-logo { font-size: .875rem; font-weight: 600; letter-spacing: -.01em; }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a { font-size: .875rem; color: var(--text-muted); transition: color .2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-burger { display: none; background: none; border: none; cursor: pointer; color: var(--text); padding: 4px; }
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.nav-cta-wrap { display: flex; align-items: center; gap: 8px; }
+@media(max-width:768px){
+  .nav-burger { display: block; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed; top: 64px;
+    left: 0; right: 0; background: var(--bg); padding: 20px var(--pad) 28px;
+    gap: 1.25rem; align-items: flex-start; border-bottom: 1px solid var(--border);
+  }
+  .nav-links .nav-cta-wrap .lang-toggle { display: none; }
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 120px var(--pad) 80px; position: relative; overflow: hidden;
+}
+.hero-orb { position: absolute; right: -6%; top: 50%; transform: translateY(-50%); width: 540px; height: 540px; border-radius: 50%; background: var(--accent); opacity: .055; pointer-events: none; }
+.hero-ring { position: absolute; right: 14%; bottom: 10%; width: 100px; height: 100px; border-radius: 50%; border: 1.5px solid var(--accent); opacity: .18; pointer-events: none; }
+.hero-content { max-width: 780px; position: relative; z-index: 1; }
+.hero-h1 {
+  font-family: var(--font-display); font-size: clamp(3.2rem, 7.5vw, 6.5rem);
+  font-weight: 300; line-height: 1.04; letter-spacing: -.02em; margin-bottom: 1.75rem;
+}
+.hero-h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.hero-sub { font-size: clamp(.95rem, 1.4vw, 1.1rem); color: var(--text-muted); font-weight: 300; line-height: 1.8; max-width: 540px; margin-bottom: 2.5rem; }
+.hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+/* ── ABOUT ── */
+.about { padding: var(--section) var(--pad); background: var(--bg2); }
+.about-grid { display: grid; grid-template-columns: 1fr; max-width: 640px; }
+.about-h2 { font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.1rem; }
+.about-body { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.85; margin-bottom: 1.75rem; }
+.about-points { display: flex; flex-direction: column; gap: .65rem; }
+.about-point { display: flex; align-items: center; gap: 12px; font-size: .9375rem; }
+.about-point::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+@media(max-width:860px){ .about-grid { grid-template-columns: 1fr; } }
+
+/* ── PROJECTS ── */
+.projects { padding: var(--section) var(--pad); }
+.proj-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(36px, 5vw, 56px); flex-wrap: wrap; gap: 16px; }
+.proj-card { border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
+
+/* featured */
+.proj-featured {
+  background: #1A1714; padding: clamp(28px, 5vw, 60px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; min-height: 500px;
+}
+.proj-title { font-family: var(--font-display); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 400; line-height: 1.15; margin-bottom: .875rem; color: #fff; }
+.proj-desc { font-size: .9375rem; color: rgba(255,255,255,.45); font-weight: 300; line-height: 1.85; margin-bottom: 1.5rem; max-width: 400px; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.75rem; }
+.tag { font-size: .72rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; letter-spacing: .04em; }
+.tag-accent { background: rgba(192,87,40,.22); color: var(--accent); }
+.tag-white { background: rgba(255,255,255,.08); color: rgba(255,255,255,.65); }
+.proj-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.proj-mockups { position: relative; height: 340px; display: flex; align-items: center; justify-content: center; }
+.mock-phone { border-radius: 18px; overflow: hidden; box-shadow: 0 24px 56px rgba(0,0,0,.55); flex-shrink: 0; background: linear-gradient(135deg, #2a2520 0%, #1c1814 100%); }
+.mock-web { border-radius: 10px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,.5); background: linear-gradient(135deg, #2a2520 0%, #1c1814 100%); }
+.mock-phone img, .mock-web img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media(max-width:768px){
+  .proj-featured { grid-template-columns: 1fr; }
+  .proj-mockups { height: 220px; }
+}
+
+/* ── SERVICES ── */
+.services { padding: var(--section) var(--pad); background: var(--bg2); }
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: clamp(36px, 5vw, 56px); }
+.service-card { background: var(--bg); border-radius: var(--radius); padding: clamp(24px, 3.5vw, 36px); border: 1px solid var(--border); transition: box-shadow .3s, transform .3s; }
+.service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.service-n { font-family: var(--font-display); font-size: 2.25rem; font-weight: 300; color: var(--accent); opacity: .3; line-height: 1; margin-bottom: 1.1rem; }
+.service-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; line-height: 1.25; }
+.service-desc { font-size: .875rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+@media(max-width:860px){ .services-grid { grid-template-columns: 1fr; } }
+
+/* ── PROCESS ── */
+.process { padding: var(--section) var(--pad); }
+.process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: clamp(36px, 5vw, 56px); position: relative; }
+.process-grid::before { content: ''; position: absolute; top: 27px; left: calc(16.66% + 16px); right: calc(16.66% + 16px); height: 1px; background: var(--border); }
+.step-num { width: 54px; height: 54px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--text); background: var(--bg); position: relative; z-index: 1; margin-bottom: 1.5rem; }
+.step-num.active-step { background: var(--accent); border-color: var(--accent); color: #fff; }
+.step-title { font-size: 1rem; font-weight: 500; margin-bottom: .45rem; }
+.step-desc { font-size: .875rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+@media(max-width:860px){ .process-grid { grid-template-columns: 1fr; } .process-grid::before { display: none; } }
+
+/* ── CONTACT ── */
+.contact { padding: var(--section) var(--pad); background: var(--bg-dark); color: #fff; }
+.contact-inner { max-width: 620px; margin: 0 auto; text-align: center; }
+.contact-h2 { font-family: var(--font-display); font-size: clamp(3rem, 7.5vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1.1rem; }
+.contact-h2 em { font-style: italic; color: var(--accent); }
+.contact-sub { font-size: 1rem; color: rgba(255,255,255,.45); font-weight: 300; line-height: 1.75; margin-bottom: 2.75rem; }
+.contact-form { display: flex; flex-direction: column; gap: 13px; text-align: left; margin-bottom: 1.75rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.f-input, .f-area {
+  width: 100%; padding: 14px 18px;
+  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-sm); color: #fff;
+  font-family: var(--font-body); font-size: .9375rem; font-weight: 300;
+  outline: none; transition: border-color .2s, background .2s;
+}
+.f-input::placeholder, .f-area::placeholder { color: rgba(255,255,255,.28); }
+.f-input:focus, .f-area:focus { border-color: var(--accent); background: rgba(255,255,255,.08); }
+.f-input.err, .f-area.err { border-color: #E05050; }
+.f-area { min-height: 130px; resize: vertical; line-height: 1.65; }
+.btn-submit {
+  width: 100%; padding: 15px; background: var(--accent); color: #fff;
+  border: none; border-radius: 100px; font-family: var(--font-body);
+  font-size: .9375rem; font-weight: 500; cursor: pointer; transition: filter .2s;
+}
+.btn-submit:hover { filter: brightness(.88); }
+.btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+.contact-alt { font-size: .825rem; color: rgba(255,255,255,.28); }
+.contact-alt a { color: rgba(255,255,255,.55); transition: color .2s; }
+.contact-alt a:hover { color: #fff; }
+.success-box { padding: 40px 20px; text-align: center; }
+.success-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(192,87,40,.18); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; color: var(--accent); }
+.success-title { color: #fff; font-family: var(--font-display); font-size: 1.875rem; font-weight: 400; margin-bottom: .5rem; }
+.success-sub { color: rgba(255,255,255,.4); font-size: .9375rem; }
+@media(max-width:600px){ .form-row { grid-template-columns: 1fr; } }
+
+/* ── FOOTER ── */
+.footer { padding: 28px var(--pad); background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,.05); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-logo { font-size: .875rem; font-weight: 600; color: rgba(255,255,255,.65); }
+.footer-copy { font-size: .8rem; color: rgba(255,255,255,.25); }
+
+/* ── LANG TOGGLE ── */
+.lang-mobile-only { display: none; }
+@media(max-width:768px){ .lang-mobile-only { display: flex; } }
+.lang-toggle {
+  display: flex; align-items: center;
+  background: rgba(28,25,23,.06); border-radius: 100px;
+  padding: 3px; gap: 1px;
+}
+.lang-btn {
+  padding: 4px 11px; border-radius: 100px; border: none;
+  font-family: var(--font-body); font-size: .75rem; font-weight: 500;
+  letter-spacing: .04em; cursor: pointer; transition: background .18s, color .18s;
+  background: transparent; color: var(--text-muted);
+}
+.lang-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,.10); }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">madebypaolo.it</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about" data-i18n="nav.about">Chi sono</a></li>
+    <li><a href="#projects" data-i18n="nav.projects">Progetti</a></li>
+    <li><a href="#services" data-i18n="nav.services">Servizi</a></li>
+    <li class="nav-cta-wrap">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn active" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="#contact"><button class="btn-primary btn-sm" data-i18n="nav.cta">Contattami</button></a>
+    </li>
+  </ul>
+  <div class="nav-right">
+    <span class="lang-mobile-only">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn active" data-lang="it">IT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </span>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <svg id="burger-icon" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-content container">
+    <h1 class="hero-h1 reveal d1">
+      <span data-i18n="hero.h1a">Sviluppo siti web</span><br>
+      <span data-i18n="hero.h1b">e app mobile</span><br>
+      <em data-i18n="hero.h1em">moderni.</em>
+    </h1>
+    <p class="hero-sub reveal d2" data-i18n="hero.sub">Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.</p>
+    <div class="hero-ctas reveal d3">
+      <a href="#contact"><button class="btn-primary" data-i18n="hero.cta1">Contattami →</button></a>
+      <a href="#projects"><button class="btn-ghost" data-i18n="hero.cta2">Guarda i progetti</button></a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container about-grid">
+    <div>
+      <span class="label reveal" data-i18n="about.label">Chi sono</span>
+      <h2 class="about-h2 reveal d1">
+        <span data-i18n="about.h2a">Costruisco prodotti</span><br>
+        <span data-i18n="about.h2b">digitali che lavorano per te.</span>
+      </h2>
+      <p class="about-body reveal d2" data-i18n="about.body">Sono Paolo Ferrari, sviluppatore freelance specializzato in siti web e app mobile. Lavoro direttamente con le aziende, senza intermediari, per creare prodotti digitali veloci, curati nei dettagli e orientati ai risultati.</p>
+      <div class="about-points reveal d3" id="about-points"></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <div class="container">
+    <div class="proj-header">
+      <div>
+        <span class="label reveal" data-i18n="projects.label">Progetti</span>
+        <h2 class="section-h2 reveal d1" data-i18n="projects.h2">Lavori selezionati</h2>
+      </div>
+    </div>
+    <div class="proj-card proj-featured reveal d2">
+      <div>
+        <h3 class="proj-title">Nike Country<br>Retreat</h3>
+        <p class="proj-desc" data-i18n="projects.p1desc">Prodotto digitale sviluppato end-to-end: app iOS, app Android e sito web. Focus su user experience raffinata e performance elevata in ogni dettaglio.</p>
+        <div class="proj-tags">
+          <span class="tag tag-accent">iOS App</span>
+          <span class="tag tag-accent">Android App</span>
+          <span class="tag tag-white">Web</span>
+          <span class="tag tag-white">UX Design</span>
+        </div>
+        <div class="proj-btns">
+          <a href="https://www.nikecountryretreat.com/" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            <span data-i18n="projects.openSite">Apri sito</span>
+          </a>
+          <a href="https://apps.apple.com/it/app/nike-country-retreat/id6748913437" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App iOS
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.nikecountryhouse.app" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.4.07 2.39.74 3.22.8 1.23-.24 2.41-.93 3.72-.84 1.58.14 2.76.82 3.54 2.05-3.24 1.94-2.73 5.9.52 7.05-.63 1.62-1.39 3.12-3 3.82zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+            App Android
+          </a>
+        </div>
+      </div>
+      <div class="proj-mockups">
+        <div class="mock-phone" style="width:118px;height:238px;transform:rotate(-5deg) translateY(14px);">
+          <img src="images/nikecountryretreat_mobile_1.png" alt="Nike Country Retreat — schermata app mobile">
+        </div>
+        <div class="mock-phone" style="width:118px;height:238px;transform:rotate(4deg) translateY(-10px);z-index:2;">
+          <img src="images/nikecountryretreat_mobile_2.png" alt="Nike Country Retreat — schermata app mobile">
+        </div>
+        <div class="mock-web" style="width:240px;height:150px;position:absolute;bottom:0;right:0;">
+          <img src="images/nikecountryretreat_website.png" alt="Nike Country Retreat — sito web">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <span class="label reveal" data-i18n="services.label">Cosa faccio</span>
+    <h2 class="section-h2 reveal d1" data-i18n="services.h2">Servizi</h2>
+    <div class="services-grid" id="services-grid"></div>
+  </div>
+</section>
+
+<section id="process" class="process">
+  <div class="container">
+    <span class="label reveal" data-i18n="process.label">Come lavoro</span>
+    <h2 class="section-h2 reveal d1">
+      <span data-i18n="process.h2a">Processo semplice,</span><br>
+      <span data-i18n="process.h2b">risultati concreti.</span>
+    </h2>
+    <div class="process-grid" id="process-grid"></div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container contact-inner">
+    <span class="label reveal" data-i18n="contact.label">Contatti</span>
+    <h2 class="contact-h2 reveal d1">
+      <span data-i18n="contact.h2">Parliamone</span><em data-i18n="contact.h2em">.</em>
+    </h2>
+    <p class="contact-sub reveal d2" data-i18n="contact.sub">Hai un progetto in mente? Scrivimi senza impegno. Rispondo entro 24 ore.</p>
+    <form class="contact-form reveal d3" id="contact-form" novalidate>
+      <div class="form-row">
+        <input class="f-input" name="name" data-i18n-ph="contact.namePh" placeholder="Il tuo nome">
+        <input class="f-input" name="email" type="email" data-i18n-ph="contact.emailPh" placeholder="La tua email">
+      </div>
+      <textarea class="f-area" name="msg" data-i18n-ph="contact.msgPh" placeholder="Raccontami del tuo progetto..."></textarea>
+      <button type="submit" class="btn-submit" id="submit-btn" data-i18n="contact.send">Invia messaggio →</button>
+    </form>
+    <div class="success-box reveal" id="success-box" style="display:none;">
+      <div class="success-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 class="success-title" data-i18n="contact.successTitle">Messaggio inviato!</h3>
+      <p class="success-sub" data-i18n="contact.successSub">Ti rispondo al più presto. A presto, Paolo.</p>
+    </div>
+    <p class="contact-alt reveal d4">
+      <span data-i18n="contact.alt">oppure scrivi direttamente a</span>
+      <a href="mailto:ciao@madebypaolo.it">ciao@madebypaolo.it</a>
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-logo">madebypaolo.it</span>
+  <span class="footer-copy" data-i18n="footer">© 2025 Paolo Ferrari · Tutti i diritti riservati</span>
+</footer>
+
+<script>
+const COPY = {
+  it: {
+    nav: { about:'Chi sono', projects:'Progetti', services:'Servizi', cta:'Contattami' },
+    hero: {
+      h1a: 'Sviluppo siti web', h1b: 'e app mobile', h1em: 'moderni.',
+      sub: 'Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.',
+      cta1: 'Contattami →', cta2: 'Guarda i progetti',
+    },
+    about: {
+      label: 'Chi sono',
+      h2a: 'Costruisco prodotti', h2b: 'digitali che lavorano per te.',
+      body: 'Sono Paolo Ferrari, sviluppatore freelance specializzato in siti web e app mobile. Lavoro direttamente con le aziende, senza intermediari, per creare prodotti digitali veloci, curati nei dettagli e orientati ai risultati.',
+      points: ['Collaborazione diretta, senza agenzia di mezzo','Esecuzione rapida e comunicazione trasparente','Attenzione maniacale a ogni dettaglio'],
+    },
+    projects: {
+      label: 'Progetti', h2: 'Lavori selezionati',
+      p1desc: 'Prodotto digitale sviluppato end-to-end: app iOS, app Android e sito web. Focus su user experience raffinata e performance elevata in ogni dettaglio.',
+      openSite: 'Apri sito',
+    },
+    services: {
+      label: 'Cosa faccio', h2: 'Servizi',
+      items: [
+        { n:'01', title:'Siti web moderni', desc:'Vetrine, siti per ristoranti e B&B che convertono i visitatori in clienti. Veloci, curati, ottimizzati per mobile.' },
+        { n:'02', title:'Web app su misura', desc:'Strumenti digitali costruiti intorno al tuo business. Non soluzioni preconfezionate: software pensato per te.' },
+        { n:'03', title:'App mobile iOS & Android', desc:'La tua attività sempre accessibile dai clienti. App native o cross-platform, fluide e intuitive.' },
+      ],
+    },
+    process: {
+      label: 'Come lavoro', h2a: 'Processo semplice,', h2b: 'risultati concreti.',
+      steps: [
+        { title:'Analisi', desc:'Capisco il tuo business e definiamo insieme obiettivi chiari. Zero tecnicismi, tutto trasparente.' },
+        { title:'Sviluppo', desc:'Realizzo il prodotto in modo rapido. Ti tengo aggiornato ad ogni fase, senza sorprese.' },
+        { title:'Consegna & Supporto', desc:'Lancio, assistenza tecnica e ottimizzazione continua. Non sparisco dopo la consegna.' },
+      ],
+    },
+    contact: {
+      label: 'Contatti', h2: 'Parliamone', h2em: '.',
+      sub: 'Hai un progetto in mente? Scrivimi senza impegno. Rispondo entro 24 ore.',
+      namePh: 'Il tuo nome', emailPh: 'La tua email', msgPh: 'Raccontami del tuo progetto...',
+      send: 'Invia messaggio →', sending: 'Invio in corso…',
+      successTitle: 'Messaggio inviato!', successSub: 'Ti rispondo al più presto. A presto, Paolo.',
+      alt: 'oppure scrivi direttamente a',
+    },
+    footer: '© 2025 Paolo Ferrari · Tutti i diritti riservati',
+  },
+  en: {
+    nav: { about:'About', projects:'Projects', services:'Services', cta:'Contact me' },
+    hero: {
+      h1a: 'I build modern', h1b: 'websites & apps', h1em: 'that work.',
+      sub: 'I work with restaurants, B&Bs, and local businesses to create digital products that deliver real results: more bookings, more leads, more customers.',
+      cta1: 'Contact me →', cta2: 'View projects',
+    },
+    about: {
+      label: 'About',
+      h2a: 'I build digital products', h2b: 'that work for you.',
+      body: "I'm Paolo Ferrari, a freelance developer specialising in websites and mobile apps. I work directly with businesses — no agency in between — to deliver fast, detail-driven digital products focused on real-world results.",
+      points: ['Direct collaboration, no agency layers','Fast execution and transparent communication','Obsessive attention to every detail'],
+    },
+    projects: {
+      label: 'Projects', h2: 'Selected work',
+      p1desc: 'End-to-end digital product: iOS app, Android app, and website. Focused on refined user experience and high performance at every level.',
+      openSite: 'Open site',
+    },
+    services: {
+      label: 'What I do', h2: 'Services',
+      items: [
+        { n:'01', title:'Modern websites', desc:'Showcase sites for restaurants and B&Bs that convert visitors into customers. Fast, polished, mobile-first.' },
+        { n:'02', title:'Custom web apps', desc:'Digital tools built around your business — not off-the-shelf solutions, but software made for you.' },
+        { n:'03', title:'iOS & Android apps', desc:'Your business always within reach for your customers. Native or cross-platform, smooth and intuitive.' },
+      ],
+    },
+    process: {
+      label: 'How I work', h2a: 'Simple process,', h2b: 'real results.',
+      steps: [
+        { title:'Discovery', desc:'I learn about your business and we define clear goals together. No jargon, full transparency.' },
+        { title:'Build', desc:'I deliver the product quickly, keeping you updated at every step — no surprises.' },
+        { title:'Launch & Support', desc:"Deployment, technical support, and continuous improvement. I don't disappear after handoff." },
+      ],
+    },
+    contact: {
+      label: 'Contact', h2: "Let's talk", h2em: '.',
+      sub: 'Have a project in mind? Reach out — no commitment needed. I reply within 24 hours.',
+      namePh: 'Your name', emailPh: 'Your email', msgPh: 'Tell me about your project...',
+      send: 'Send message →', sending: 'Sending…',
+      successTitle: 'Message sent!', successSub: "I'll get back to you soon. Talk soon, Paolo.",
+      alt: 'or email me directly at',
+    },
+    footer: '© 2025 Paolo Ferrari · All rights reserved',
+  },
+};
+
+let lang = 'it';
+
+function getCopy(path) {
+  return path.split('.').reduce((o, k) => (o ? o[k] : undefined), COPY[lang]);
+}
+
+function renderAboutPoints() {
+  const el = document.getElementById('about-points');
+  el.innerHTML = COPY[lang].about.points
+    .map(p => `<p class="about-point">${p}</p>`).join('');
+}
+
+function renderServices() {
+  const el = document.getElementById('services-grid');
+  el.innerHTML = COPY[lang].services.items.map((s, i) => `
+    <div class="service-card reveal d${i+1} in">
+      <div class="service-n">${s.n}</div>
+      <h3 class="service-title">${s.title}</h3>
+      <p class="service-desc">${s.desc}</p>
+    </div>
+  `).join('');
+}
+
+function renderProcess() {
+  const el = document.getElementById('process-grid');
+  el.innerHTML = COPY[lang].process.steps.map((s, i) => `
+    <div class="reveal d${i+1} in">
+      <div class="step-num${i === 0 ? ' active-step' : ''}">${String(i+1).padStart(2,'0')}</div>
+      <h3 class="step-title">${s.title}</h3>
+      <p class="step-desc">${s.desc}</p>
+    </div>
+  `).join('');
+}
+
+function applyTranslations() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = getCopy(el.dataset.i18n);
+    if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const v = getCopy(el.dataset.i18nPh);
+    if (v !== undefined) el.placeholder = v;
+  });
+  renderAboutPoints();
+  renderServices();
+  renderProcess();
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    lang = btn.dataset.lang;
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    applyTranslations();
+  });
+});
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('nav-links');
+const burgerIconOpen = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+const burgerIconClose = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4l14 14M18 4L4 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+
+burger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  burger.innerHTML = open ? burgerIconClose : burgerIconOpen;
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    burger.innerHTML = burgerIconOpen;
+  });
+});
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.14 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+const form = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const successBox = document.getElementById('success-box');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const name = data.get('name').trim();
+  const email = data.get('email').trim();
+  const msg = data.get('msg').trim();
+  let valid = true;
+  form.querySelector('[name="name"]').classList.toggle('err', !name);
+  form.querySelector('[name="email"]').classList.toggle('err', !email || !/\S+@\S+\.\S+/.test(email));
+  form.querySelector('[name="msg"]').classList.toggle('err', !msg);
+  if (!name || !email || !/\S+@\S+\.\S+/.test(email) || !msg) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = COPY[lang].contact.sending;
+  setTimeout(() => {
+    form.style.display = 'none';
+    successBox.style.display = 'block';
+    successBox.classList.add('in');
+  }, 1600);
+});
+
+['name','email','msg'].forEach(n => {
+  const el = form.querySelector(`[name="${n}"]`);
+  el.addEventListener('input', () => el.classList.remove('err'));
+});
+
+applyTranslations();
+</script>
+
+</body>
+</html>
