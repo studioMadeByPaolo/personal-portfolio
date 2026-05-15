@@ -11,6 +11,16 @@ const app = express();
 app.set('trust proxy', 1);
 app.disable('x-powered-by');
 
+// Redirect HTTP → HTTPS when behind a proxy that terminated TLS (Railway, etc.).
+// Skipped locally where x-forwarded-proto is absent.
+app.use((req, res, next) => {
+  const proto = req.get('x-forwarded-proto');
+  if (proto && proto !== 'https') {
+    return res.redirect(301, `https://${req.headers.host}${req.originalUrl}`);
+  }
+  next();
+});
+
 app.use(
   helmet({
     contentSecurityPolicy: {
