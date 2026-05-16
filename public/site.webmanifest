@@ -1,14 +1,17 @@
 {
-  "name": "madebypaolo.it",
-  "short_name": "madebypaolo",
-  "description": "Paolo Ferrari — Sviluppo siti web e app mobile",
+  "name": "Made by Paolo",
+  "short_name": "Made by Paolo",
+  "description": "Freelance web and mobile developer creating modern websites, mobile apps, and digital experiences.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#F7F5F1",
   "theme_color": "#C05728",
-  "lang": "it-IT",
+  "lang": "en-US",
   "icons": [
-    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" }
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180", "purpose": "any" },
+    { "src": "/android-chrome-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any maskable" },
+    { "src": "/android-chrome-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any maskable" }
   ]
 }

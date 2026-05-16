@@ -11,4 +11,4 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-Sitemap: https://madebypaolo.it/sitemap.xml
+Sitemap: https://www.madebypaolo.it/sitemap.xml
