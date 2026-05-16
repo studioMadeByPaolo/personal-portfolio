@@ -51,6 +51,11 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 
+<!-- iOS PWA / Add to Home Screen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Made by Paolo">
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,6 +91,8 @@
   "image": "https://www.madebypaolo.it/images/og-image.png",
   "url": "https://www.madebypaolo.it/",
   "email": "studio@madebypaolo.it",
+  "telephone": "+393491205738",
+  "vatID": "IT04924620166",
   "priceRange": "€€",
   "areaServed": {
     "@type": "Country",
@@ -93,6 +100,10 @@
   },
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Via Giuseppe Verdi 13",
+    "addressLocality": "Castione della Presolana",
+    "addressRegion": "BG",
+    "postalCode": "24020",
     "addressCountry": "IT"
   },
   "founder": {
@@ -503,13 +514,22 @@ button { font: inherit; }
       </div>
       <div class="proj-mockups">
         <div class="mock-phone" style="width:118px;height:238px;transform:rotate(-5deg) translateY(14px);">
-          <img src="images/nikecountryretreat_mobile_1.png" alt="Nike Country Retreat — schermata app mobile">
+          <picture>
+            <source srcset="images/nikecountryretreat_mobile_1.webp" type="image/webp">
+            <img src="images/nikecountryretreat_mobile_1.png" alt="Nike Country Retreat — schermata app mobile" width="480" height="1044" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="mock-phone" style="width:118px;height:238px;transform:rotate(4deg) translateY(-10px);z-index:2;">
-          <img src="images/nikecountryretreat_mobile_2.png" alt="Nike Country Retreat — schermata app mobile">
+          <picture>
+            <source srcset="images/nikecountryretreat_mobile_2.webp" type="image/webp">
+            <img src="images/nikecountryretreat_mobile_2.png" alt="Nike Country Retreat — schermata app mobile" width="480" height="1044" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="mock-web" style="width:240px;height:150px;position:absolute;bottom:0;right:0;">
-          <img src="images/nikecountryretreat_website.png" alt="Nike Country Retreat — sito web">
+          <picture>
+            <source srcset="images/nikecountryretreat_website.webp" type="image/webp">
+            <img src="images/nikecountryretreat_website.png" alt="Nike Country Retreat — sito web" width="960" height="535" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
     </div>
@@ -585,6 +605,7 @@ button { font: inherit; }
   <span class="footer-logo">madebypaolo.it</span>
   <span class="footer-links">
     <a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+    <a href="/imprint.html" data-i18n="footer.imprint">Note legali</a>
   </span>
   <span class="footer-copy" id="footer-copy"></span>
 </footer>
@@ -643,7 +664,7 @@ const COPY = {
       alt: 'oppure scrivi direttamente a',
       errorGeneric: 'Errore di invio. Riprova tra qualche minuto o scrivimi direttamente a studio@madebypaolo.it.',
     },
-    footer: { copy: '© {year} Paolo Ferrari · Tutti i diritti riservati', privacy: 'Privacy Policy' },
+    footer: { copy: '© {year} Paolo Ferrari · Tutti i diritti riservati', privacy: 'Privacy Policy', imprint: 'Note legali' },
   },
   en: {
     meta: {
@@ -697,7 +718,7 @@ const COPY = {
       alt: 'or email me directly at',
       errorGeneric: 'Submission failed. Please try again in a few minutes, or email me directly at studio@madebypaolo.it.',
     },
-    footer: { copy: '© {year} Paolo Ferrari · All rights reserved', privacy: 'Privacy Policy' },
+    footer: { copy: '© {year} Paolo Ferrari · All rights reserved', privacy: 'Privacy Policy', imprint: 'Legal notice' },
   },
 };
 

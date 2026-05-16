@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Pagina non trovata | Made by Paolo</title>
+<meta name="description" content="La pagina che stai cercando non esiste o è stata spostata.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#C05728">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://www.madebypaolo.it/404.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F5F1;
+  --text: #1C1917;
+  --text-muted: #7C7268;
+  --accent: #C05728;
+  --border: #E2DDD6;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --pad: clamp(24px, 6vw, 88px);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.nav {
+  padding: 20px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-size: .875rem; font-weight: 600; color: var(--text); text-decoration: none; }
+.nav-back { font-size: .875rem; color: var(--text-muted); text-decoration: none; transition: color .2s; }
+.nav-back:hover { color: var(--text); }
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px var(--pad);
+  position: relative;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  right: -10%;
+  top: 30%;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: .055;
+  pointer-events: none;
+}
+.code {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(7rem, 22vw, 14rem);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -.04em;
+  margin-bottom: .5rem;
+  position: relative;
+}
+.code em { font-style: italic; font-weight: 400; }
+h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 1rem;
+  position: relative;
+}
+p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 460px;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  padding: 12px 26px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: .9375rem;
+  font-weight: 500;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: filter .2s, transform .15s;
+  position: relative;
+}
+.btn:hover { filter: brightness(.88); transform: translateY(-1px); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo">madebypaolo.it</a>
+  <a href="/" class="nav-back" data-i18n="back">← Torna alla home</a>
+</nav>
+<main>
+  <div class="orb" aria-hidden="true"></div>
+  <div class="code" aria-hidden="true">4<em>0</em>4</div>
+  <h1 data-i18n="title">Pagina non trovata</h1>
+  <p data-i18n="body">La pagina che stai cercando non esiste o è stata spostata. Prova a tornare alla home.</p>
+  <a href="/" class="btn" data-i18n="cta">← Torna alla home</a>
+</main>
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var stored; try { stored = localStorage.getItem('lang'); } catch (e) {}
+  var urlLang = params.get('lang');
+  var lang = ['it','en'].includes(urlLang) ? urlLang
+           : ['it','en'].includes(stored) ? stored
+           : (navigator.language && navigator.language.toLowerCase().startsWith('en')) ? 'en' : 'it';
+  var COPY = {
+    it: { title: 'Pagina non trovata',
+          body: 'La pagina che stai cercando non esiste o è stata spostata. Prova a tornare alla home.',
+          cta: '← Torna alla home', back: '← Torna alla home',
+          docTitle: '404 — Pagina non trovata | Made by Paolo' },
+    en: { title: 'Page not found',
+          body: "The page you're looking for doesn't exist or has been moved. Head back to the home page.",
+          cta: '← Back to home', back: '← Back to home',
+          docTitle: '404 — Page not found | Made by Paolo' }
+  };
+  document.documentElement.lang = lang;
+  document.title = COPY[lang].docTitle;
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    var v = COPY[lang][el.dataset.i18n];
+    if (v) el.textContent = v;
+  });
+})();
+</script>
+</body>
+</html>

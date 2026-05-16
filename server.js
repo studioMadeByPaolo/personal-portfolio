@@ -137,6 +137,9 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
 app.get('/healthz', (_req, res) => res.json({ ok: true }));
 
+// Legacy alias for RFC 9116 security.txt — the canonical lives at /.well-known/security.txt
+app.get('/security.txt', (_req, res) => res.redirect(301, '/.well-known/security.txt'));
+
 app.use(
   express.static(path.join(__dirname, 'public'), {
     setHeaders(res, p) {
@@ -150,7 +153,7 @@ app.use(
 );
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
 const PORT = process.env.PORT || 3000;
