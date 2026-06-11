@@ -313,6 +313,45 @@ button { font: inherit; }
   .proj-mockups { height: 220px; }
 }
 
+/* ── NEXT / IN LAVORAZIONE ── */
+.next { padding: var(--section) var(--pad); background: var(--bg); }
+.next .proj-featured { margin-bottom: 0; }
+.next-status { display: inline-flex; align-items: center; gap: 9px; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: rgba(var(--accent-rgb),.14); padding: 6px 14px; border-radius: 100px; margin-bottom: 1.4rem; }
+.next-status .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); position: relative; }
+.next-status .pulse::after { content:''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: nextPulse 2.2s ease-out infinite; }
+@keyframes nextPulse { 0% { transform: scale(1); opacity: .65; } 100% { transform: scale(3.4); opacity: 0; } }
+.next-tagline { font-family: var(--font-display); font-size: clamp(1.2rem, 2.1vw, 1.5rem); font-style: italic; color: rgba(255,255,255,.85); font-weight: 400; line-height: 1.35; margin-bottom: 1.1rem; max-width: 430px; }
+.next-soon { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; color: rgba(255,255,255,.42); font-weight: 300; margin-top: .25rem; }
+.next-soon svg { color: var(--accent); flex: 0 0 auto; }
+
+/* concept preview */
+.next-visual { display: flex; align-items: center; justify-content: center; }
+.np-window { background: #faf7f1; border-radius: 14px; box-shadow: 0 30px 72px rgba(0,0,0,.5); width: 100%; max-width: 392px; overflow: hidden; transform: rotate(-1.4deg); }
+.np-bar { display: flex; gap: 6px; padding: 13px 16px; background: #f1ece2; border-bottom: 1px solid #e7e1d6; }
+.np-bar span { width: 10px; height: 10px; border-radius: 50%; }
+.np-bar span:nth-child(1) { background: #d8a13b; }
+.np-bar span:nth-child(2) { background: #c0673c; }
+.np-bar span:nth-child(3) { background: #6b4a6e; }
+.np-body { padding: 20px; }
+.np-booking { background: #fff; border: 1px solid #e7e1d6; border-radius: 11px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+.np-booking-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+.np-room { font-weight: 600; font-size: .9rem; color: #2a241d; }
+.np-plan { font-size: .67rem; font-weight: 600; letter-spacing: .03em; padding: 3px 9px; border-radius: 100px; background: rgba(192,103,60,.14); color: #9a4a26; white-space: nowrap; }
+.np-dates { font-size: .78rem; color: #8a7f70; }
+.np-connector { display: flex; flex-direction: column; align-items: center; padding: 4px 0; }
+.np-connector .line { width: 2px; height: 16px; background: linear-gradient(#d8d0c2, #c0673c); }
+.np-auto { display: inline-flex; align-items: center; gap: 6px; font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: #b07a52; font-weight: 600; margin: 7px 0 12px; }
+.np-meals { display: flex; flex-direction: column; gap: 8px; }
+.np-meal { display: flex; align-items: center; gap: 11px; background: #fff; border: 1px solid #e7e1d6; border-radius: 9px; padding: 10px 14px; font-size: .82rem; color: #3a342c; font-weight: 500; }
+.np-meal .m-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+.np-meal .m-count { margin-left: auto; font-size: .72rem; color: #8a7f70; font-weight: 600; }
+.meal-b .m-dot { background: #d8a13b; }
+.meal-l .m-dot { background: #c0673c; }
+.meal-d .m-dot { background: #6b4a6e; }
+@media(max-width:768px){
+  .np-window { transform: none; margin: 0 auto; }
+}
+
 /* ── SERVICES ── */
 .services { padding: var(--section) var(--pad); background: var(--bg2); }
 .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: clamp(36px, 5vw, 56px); }
@@ -426,6 +465,7 @@ button { font: inherit; }
   <ul class="nav-links" id="nav-links">
     <li><a href="#about" data-i18n="nav.about">Chi sono</a></li>
     <li><a href="#projects" data-i18n="nav.projects">Progetti</a></li>
+    <li><a href="#next" data-i18n="nav.next">In lavorazione</a></li>
     <li><a href="#services" data-i18n="nav.services">Servizi</a></li>
     <li class="nav-cta-wrap">
       <div class="lang-toggle" role="group" aria-label="Language">
@@ -513,19 +553,19 @@ button { font: inherit; }
         </div>
       </div>
       <div class="proj-mockups">
-        <div class="mock-phone" style="width:118px;height:238px;transform:translateX(-55px) rotate(-5deg) translateY(14px);">
+        <div class="mock-phone" style="width:104px;height:210px;position:absolute;left:11%;top:50%;z-index:1;transform:translateY(-50%) rotate(-9deg);">
           <picture>
             <source srcset="images/nikecountryretreat_mobile_1.webp" type="image/webp">
             <img src="images/nikecountryretreat_mobile_1.png" alt="Nike Country Retreat — schermata app mobile" width="480" height="1044" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="mock-phone" style="width:118px;height:238px;transform:translateX(-55px) rotate(4deg) translateY(-10px);z-index:2;">
+        <div class="mock-phone" style="width:104px;height:210px;position:absolute;right:11%;top:50%;z-index:1;transform:translateY(-50%) rotate(8deg);">
           <picture>
             <source srcset="images/nikecountryretreat_mobile_2.webp" type="image/webp">
             <img src="images/nikecountryretreat_mobile_2.png" alt="Nike Country Retreat — schermata app mobile" width="480" height="1044" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="mock-web" style="width:240px;height:150px;position:absolute;bottom:0;right:0;">
+        <div class="mock-web" style="width:300px;height:188px;position:relative;z-index:3;box-shadow:0 28px 64px rgba(0,0,0,.55);">
           <picture>
             <source srcset="images/nikecountryretreat_website_v2.webp" type="image/webp">
             <img src="images/nikecountryretreat_website_v2.png" alt="Nike Country Retreat — sito web" width="960" height="602" loading="lazy" decoding="async">
@@ -561,6 +601,63 @@ button { font: inherit; }
             <source srcset="images/robe2000_website_1.webp" type="image/webp">
             <img src="images/robe2000_website_1.png" alt="RO.BE 2000 — homepage del sito redesign" width="1200" height="753" loading="lazy" decoding="async">
           </picture>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="next" class="next">
+  <div class="container">
+    <div class="proj-header">
+      <div>
+        <span class="label reveal" data-i18n="next.label">In lavorazione</span>
+        <h2 class="section-h2 reveal d1" data-i18n="next.h2">Il prossimo progetto</h2>
+      </div>
+    </div>
+    <div class="proj-card proj-featured reveal d2">
+      <div>
+        <span class="next-status">
+          <span class="pulse"></span>
+          <span data-i18n="next.status">In sviluppo</span>
+        </span>
+        <h3 class="proj-title">LodgeOS</h3>
+        <p class="next-tagline" data-i18n="next.tagline">Il gestionale che parla la lingua dell'ospitalità.</p>
+        <p class="proj-desc" data-i18n="next.desc">Una piattaforma multi-tenant per B&amp;B, agriturismi e piccoli hotel. Camere e ristorante finalmente connessi: ogni soggiorno con trattamento genera in automatico i coperti per ogni giorno del soggiorno.</p>
+        <div class="proj-tags">
+          <span class="tag tag-accent">Next.js</span>
+          <span class="tag tag-accent">TypeScript</span>
+          <span class="tag tag-accent">PostgreSQL</span>
+          <span class="tag tag-white">Multi-tenant</span>
+          <span class="tag tag-white">SaaS</span>
+        </div>
+        <span class="next-soon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span data-i18n="next.soon">Presto disponibile</span>
+        </span>
+      </div>
+      <div class="next-visual">
+        <div class="np-window" aria-hidden="true">
+          <div class="np-bar"><span></span><span></span><span></span></div>
+          <div class="np-body">
+            <div class="np-booking">
+              <div class="np-booking-top">
+                <span class="np-room">Suite Vallechiara</span>
+                <span class="np-plan" data-i18n="next.plan">Mezza pensione</span>
+              </div>
+              <div class="np-dates" data-i18n="next.dates">12 → 15 Giu · 2 ospiti</div>
+            </div>
+            <div class="np-connector"><span class="line"></span></div>
+            <span class="np-auto">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><path d="M12 8.5l1.2 2.3 2.3 1.2-2.3 1.2L12 15.5l-1.2-2.3L8.5 12l2.3-1.2z"/></svg>
+              <span data-i18n="next.auto">Coperti generati in automatico</span>
+            </span>
+            <div class="np-meals">
+              <div class="np-meal meal-b"><span class="m-dot"></span><span data-i18n="next.mealB">Colazione</span><span class="m-count">×3</span></div>
+              <div class="np-meal meal-l"><span class="m-dot"></span><span data-i18n="next.mealL">Pranzo</span><span class="m-count">×3</span></div>
+              <div class="np-meal meal-d"><span class="m-dot"></span><span data-i18n="next.mealD">Cena</span><span class="m-count">×3</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -649,7 +746,7 @@ const COPY = {
       description: 'Sviluppatore freelance: realizzo siti web, app mobile ed esperienze digitali moderne.',
     },
     a11y: { skip: 'Vai al contenuto principale' },
-    nav: { about:'Chi sono', projects:'Progetti', services:'Servizi', cta:'Contattami' },
+    nav: { about:'Chi sono', projects:'Progetti', next:'In lavorazione', services:'Servizi', cta:'Contattami' },
     hero: {
       h1a: 'Sviluppo siti web', h1b: 'e app mobile', h1em: 'moderni.',
       sub: 'Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.',
@@ -666,6 +763,17 @@ const COPY = {
       p1desc: 'Prodotto digitale sviluppato end-to-end: app iOS, app Android e sito web. Focus su user experience raffinata e performance elevata in ogni dettaglio.',
       p2desc: 'Redesign completo del sito per RO.BE 2000, azienda specializzata nello stampaggio di elastomeri per il settore food contact. Identità visiva industriale, tipografia d\'impatto e architettura dei contenuti bilingue.',
       openSite: 'Apri sito',
+    },
+    next: {
+      label: 'In lavorazione', h2: 'Il prossimo progetto',
+      status: 'In sviluppo',
+      tagline: 'Il gestionale che parla la lingua dell\'ospitalità.',
+      desc: 'Una piattaforma multi-tenant per B&B, agriturismi e piccoli hotel. Camere e ristorante finalmente connessi: ogni soggiorno con trattamento genera in automatico i coperti per ogni giorno del soggiorno.',
+      soon: 'Presto disponibile',
+      auto: 'Coperti generati in automatico',
+      plan: 'Mezza pensione',
+      dates: '12 → 15 Giu · 2 ospiti',
+      mealB: 'Colazione', mealL: 'Pranzo', mealD: 'Cena',
     },
     services: {
       label: 'Cosa faccio', h2: 'Servizi',
@@ -704,7 +812,7 @@ const COPY = {
       description: 'Freelance web and mobile developer creating modern websites, mobile apps, and digital experiences.',
     },
     a11y: { skip: 'Skip to main content' },
-    nav: { about:'About', projects:'Projects', services:'Services', cta:'Contact me' },
+    nav: { about:'About', projects:'Projects', next:'In the works', services:'Services', cta:'Contact me' },
     hero: {
       h1a: 'I build modern', h1b: 'websites & apps', h1em: 'that work.',
       sub: 'I work with restaurants, B&Bs, and local businesses to create digital products that deliver real results: more bookings, more leads, more customers.',
@@ -721,6 +829,17 @@ const COPY = {
       p1desc: 'End-to-end digital product: iOS app, Android app, and website. Focused on refined user experience and high performance at every level.',
       p2desc: 'Full website redesign for RO.BE 2000, a company specialized in elastomer stamping for the food-contact sector. Industrial visual identity, bold typography, and a bilingual content architecture.',
       openSite: 'Open site',
+    },
+    next: {
+      label: 'In the works', h2: "What's next",
+      status: 'In development',
+      tagline: 'Hospitality management that finally connects the dots.',
+      desc: 'A multi-tenant platform for B&Bs, agriturismi and small hotels. Rooms and restaurant, finally connected: every stay with a board plan auto-generates the dining covers for each day.',
+      soon: 'Coming soon',
+      auto: 'Covers generated automatically',
+      plan: 'Half board',
+      dates: '12 → 15 Jun · 2 guests',
+      mealB: 'Breakfast', mealL: 'Lunch', mealD: 'Dinner',
     },
     services: {
       label: 'What I do', h2: 'Services',
