@@ -310,7 +310,16 @@ button { font: inherit; }
 .mock-phone img, .mock-web img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media(max-width:768px){
   .proj-featured { grid-template-columns: 1fr; }
-  .proj-mockups { height: 220px; }
+  .proj-mockups { height: 240px; }
+  /* Nike: center the phones (drop the desktop left shift), website on top at bottom-right */
+  .proj-mockups .mock-phone { width: 94px !important; height: 190px !important; }
+  .proj-mockups .mock-phone:first-child { transform: rotate(-5deg) translateY(10px) !important; }
+  .proj-mockups .mock-phone:nth-child(2) { transform: rotate(4deg) translateY(-8px) !important; }
+  .mock-web[style*="absolute"] { width: 180px !important; height: 113px !important; right: 5% !important; bottom: 8% !important; }
+  /* RO.BE: overlap the two web mockups so they fit the column */
+  .proj-mockups .mock-web:not([style*="absolute"]) { width: 200px !important; height: 126px !important; }
+  .proj-mockups .mock-web:not([style*="absolute"]):first-child { transform: rotate(-4deg) !important; margin-right: -72px !important; }
+  .proj-mockups .mock-web:not([style*="absolute"]):nth-child(2) { transform: rotate(4deg) !important; }
 }
 
 /* ── NEXT / IN LAVORAZIONE ── */
