@@ -309,16 +309,21 @@ button { font: inherit; }
 .mock-web { border-radius: 10px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,.5); background: linear-gradient(135deg, #2a2520 0%, #1c1814 100%); }
 .mock-phone img, .mock-web img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media(max-width:768px){
-  .proj-featured { grid-template-columns: 1fr; }
+  /* wider strips: every section doubles its side gutter (section padding + the
+     inner .container padding). On mobile that inset is too heavy and clips the
+     project mockups, so drop the redundant section padding and let the
+     .container be the single gutter. Headers stay aligned across all sections. */
+  .hero, .about, .projects, .next, .services, .process, .contact { padding-left: 0 !important; padding-right: 0 !important; }
+  .proj-featured { grid-template-columns: 1fr; padding: 30px 18px; }
   .proj-mockups { height: 240px; }
   /* Nike: center the phones (drop the desktop left shift), website on top at bottom-right */
-  .proj-mockups .mock-phone { width: 94px !important; height: 190px !important; }
+  .proj-mockups .mock-phone { width: 88px !important; height: 182px !important; }
   .proj-mockups .mock-phone:first-child { transform: rotate(-5deg) translateY(10px) !important; }
   .proj-mockups .mock-phone:nth-child(2) { transform: rotate(4deg) translateY(-8px) !important; }
-  .mock-web[style*="absolute"] { width: 180px !important; height: 113px !important; right: 5% !important; bottom: 8% !important; }
-  /* RO.BE: overlap the two web mockups so they fit the column */
-  .proj-mockups .mock-web:not([style*="absolute"]) { width: 200px !important; height: 126px !important; }
-  .proj-mockups .mock-web:not([style*="absolute"]):first-child { transform: rotate(-4deg) !important; margin-right: -72px !important; }
+  .mock-web[style*="absolute"] { width: 166px !important; height: 104px !important; right: 4% !important; bottom: 8% !important; }
+  /* RO.BE: overlap the two web mockups so both fit the column */
+  .proj-mockups .mock-web:not([style*="absolute"]) { width: 166px !important; height: 104px !important; }
+  .proj-mockups .mock-web:not([style*="absolute"]):first-child { transform: rotate(-4deg) !important; margin-right: -60px !important; }
   .proj-mockups .mock-web:not([style*="absolute"]):nth-child(2) { transform: rotate(4deg) !important; }
 }
 
