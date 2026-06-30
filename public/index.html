@@ -287,6 +287,21 @@ button { font: inherit; }
 .about-point::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 @media(max-width:860px){ .about-grid { grid-template-columns: 1fr; } }
 
+/* ── EXPERIENCE ── */
+.exp { padding: var(--section) var(--pad); }
+.exp-list { position: relative; max-width: 720px; margin-top: clamp(36px, 5vw, 56px); }
+.exp-list::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+.exp-item { position: relative; padding-left: 38px; padding-bottom: clamp(32px, 4vw, 46px); }
+.exp-item:last-child { padding-bottom: 0; }
+.exp-item::before { content: ''; position: absolute; left: 0; top: 4px; width: 15px; height: 15px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border); box-sizing: border-box; }
+.exp-item.current::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px rgba(var(--accent-rgb),.14); }
+.exp-period { font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; display: block; }
+.exp-company { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.75rem); font-weight: 600; line-height: 1.15; }
+.exp-role { font-size: .9rem; color: var(--text-muted); font-weight: 500; margin-bottom: .7rem; }
+.exp-desc { font-size: .9375rem; color: var(--text-muted); font-weight: 300; line-height: 1.8; max-width: 540px; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 1rem; }
+.exp-tag { font-size: .72rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; letter-spacing: .02em; background: var(--bg2); color: var(--text-muted); border: 1px solid var(--border); }
+
 /* ── PROJECTS ── */
 .projects { padding: var(--section) var(--pad); }
 .proj-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(36px, 5vw, 56px); flex-wrap: wrap; gap: 16px; }
@@ -313,7 +328,7 @@ button { font: inherit; }
      inner .container padding). On mobile that inset is too heavy and clips the
      project mockups, so drop the redundant section padding and let the
      .container be the single gutter. Headers stay aligned across all sections. */
-  .hero, .about, .projects, .next, .services, .process, .contact { padding-left: 0 !important; padding-right: 0 !important; }
+  .hero, .about, .exp, .projects, .next, .services, .process, .contact { padding-left: 0 !important; padding-right: 0 !important; }
   .proj-featured { grid-template-columns: 1fr; padding: 30px 18px; }
   .proj-mockups { height: 240px; }
   /* Nike: center the phones (drop the desktop left shift), website on top at bottom-right */
@@ -456,6 +471,7 @@ button { font: inherit; }
   <a href="#" class="nav-logo">madebypaolo.it</a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#about" data-i18n="nav.about">Chi sono</a></li>
+    <li><a href="#experience" data-i18n="nav.experience">Esperienza</a></li>
     <li><a href="#projects" data-i18n="nav.projects">Progetti</a></li>
     <li><a href="#next" data-i18n="nav.next">In lavorazione</a></li>
     <li><a href="#services" data-i18n="nav.services">Servizi</a></li>
@@ -508,6 +524,14 @@ button { font: inherit; }
       <p class="about-body reveal d2" data-i18n="about.body">Sono Paolo Ferrari, sviluppatore freelance specializzato in siti web e app mobile. Lavoro direttamente con le aziende, senza intermediari, per creare prodotti digitali veloci, curati nei dettagli e orientati ai risultati.</p>
       <div class="about-points reveal d3" id="about-points"></div>
     </div>
+  </div>
+</section>
+
+<section id="experience" class="exp">
+  <div class="container">
+    <span class="label reveal" data-i18n="experience.label">Esperienza</span>
+    <h2 class="section-h2 reveal d1" data-i18n="experience.h2">Dove ho lavorato</h2>
+    <div class="exp-list" id="exp-list"></div>
   </div>
 </section>
 
@@ -714,7 +738,7 @@ const COPY = {
       description: 'Sviluppatore freelance: realizzo siti web, app mobile ed esperienze digitali moderne.',
     },
     a11y: { skip: 'Vai al contenuto principale' },
-    nav: { about:'Chi sono', projects:'Progetti', next:'In lavorazione', services:'Servizi', cta:'Contattami' },
+    nav: { about:'Chi sono', experience:'Esperienza', projects:'Progetti', next:'In lavorazione', services:'Servizi', cta:'Contattami' },
     hero: {
       h1a: 'Sviluppo siti web', h1b: 'e app mobile', h1em: 'moderni.',
       sub: 'Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.',
@@ -725,6 +749,16 @@ const COPY = {
       h2a: 'Costruisco prodotti', h2b: 'digitali che lavorano per te.',
       body: 'Sono Paolo Ferrari, sviluppatore freelance specializzato in siti web e app mobile. Lavoro direttamente con le aziende, senza intermediari, per creare prodotti digitali veloci, curati nei dettagli e orientati ai risultati.',
       points: ['Collaborazione diretta, senza agenzia di mezzo','Esecuzione rapida e comunicazione trasparente','Attenzione maniacale a ogni dettaglio'],
+    },
+    experience: {
+      label: 'Esperienza', h2: 'Dove ho lavorato',
+      items: [
+        { period: 'Mar 2025 – Oggi', company: 'Space Mushrooms', role: 'Sviluppatore iOS', current: true,
+          desc: 'Sviluppo e mantengo diverse app iOS end-to-end, da moduli di monetizzazione a prodotti completi, modernizzando codice legacy e realizzando nuove funzionalità.' },
+        { period: 'Set 2022 – Feb 2025', company: 'Accenture', role: 'Sviluppatore iOS',
+          desc: 'Ho realizzato app iOS per grandi marchi, lavorando su più prodotti in parallelo a stretto contatto con design e team di prodotto.',
+          tags: ['Italia.it · Ministero del Turismo', 'Moncler', 'Prada'] },
+      ],
     },
     projects: {
       label: 'Progetti', h2: 'Lavori selezionati',
@@ -781,7 +815,7 @@ const COPY = {
       description: 'Freelance web and mobile developer creating modern websites, mobile apps, and digital experiences.',
     },
     a11y: { skip: 'Skip to main content' },
-    nav: { about:'About', projects:'Projects', next:'In the works', services:'Services', cta:'Contact me' },
+    nav: { about:'About', experience:'Experience', projects:'Projects', next:'In the works', services:'Services', cta:'Contact me' },
     hero: {
       h1a: 'I build modern', h1b: 'websites & apps', h1em: 'that work.',
       sub: 'I work with restaurants, B&Bs, and local businesses to create digital products that deliver real results: more bookings, more leads, more customers.',
@@ -792,6 +826,16 @@ const COPY = {
       h2a: 'I build digital products', h2b: 'that work for you.',
       body: "I'm Paolo Ferrari, a freelance developer specialising in websites and mobile apps. I work directly with businesses — no agency in between — to deliver fast, detail-driven digital products focused on real-world results.",
       points: ['Direct collaboration, no agency layers','Fast execution and transparent communication','Obsessive attention to every detail'],
+    },
+    experience: {
+      label: 'Experience', h2: "Where I've worked",
+      items: [
+        { period: 'Mar 2025 – Present', company: 'Space Mushrooms', role: 'iOS Developer', current: true,
+          desc: 'I build and maintain several iOS apps end-to-end, from monetization modules to full standalone products — modernizing legacy code and shipping new features.' },
+        { period: 'Sep 2022 – Feb 2025', company: 'Accenture', role: 'iOS Developer',
+          desc: 'Built iOS apps for major brands, working across multiple products in parallel and closely with design and product teams.',
+          tags: ['Italia.it · Tourism Ministry', 'Moncler', 'Prada'] },
+      ],
     },
     projects: {
       label: 'Projects', h2: 'Selected work',
@@ -870,6 +914,20 @@ function renderAboutPoints() {
     .map(p => `<p class="about-point">${p}</p>`).join('');
 }
 
+function renderExperience() {
+  const el = document.getElementById('exp-list');
+  if (!el) return;
+  el.innerHTML = COPY[lang].experience.items.map((x, i) => `
+    <div class="exp-item${x.current ? ' current' : ''} reveal d${i+1} in">
+      <span class="exp-period">${x.period}</span>
+      <h3 class="exp-company">${x.company}</h3>
+      <p class="exp-role">${x.role}</p>
+      <p class="exp-desc">${x.desc}</p>
+      ${x.tags ? `<div class="exp-tags">${x.tags.map(t => `<span class="exp-tag">${t}</span>`).join('')}</div>` : ''}
+    </div>
+  `).join('');
+}
+
 function renderServices() {
   const el = document.getElementById('services-grid');
   el.innerHTML = COPY[lang].services.items.map((s, i) => `
@@ -919,6 +977,7 @@ function applyTranslations() {
   const footerCopy = document.getElementById('footer-copy');
   if (footerCopy) footerCopy.textContent = COPY[lang].footer.copy.replace('{year}', new Date().getFullYear());
   renderAboutPoints();
+  renderExperience();
   renderServices();
   renderProcess();
 }
