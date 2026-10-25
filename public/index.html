@@ -467,7 +467,7 @@ button { font: inherit; }
    Phone-only redesign: tighter rhythm, projects right after the hero as a
    swipeable rail, full-screen menu, list-style sections. The elements below
    exist only for this layout and stay hidden on desktop. */
-.nav-cta-mobile, .nav-mail, .hero-chip, .hero-proof, .proj-count, .proj-dots, .contact-or { display: none; }
+.nav-cta-mobile, .nav-mail, .hero-chip, .proj-count, .proj-dots, .contact-or { display: none; }
 @media(max-width:768px){
   :root { --text-muted: #6B6158; --label-light: #A84A20; --label-dark: #E08A5E; }
   .label { color: var(--label-light); margin-bottom: .9rem; font-size: .6875rem; }
@@ -524,9 +524,6 @@ button { font: inherit; }
   .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; }
   .hero-ctas a, .hero-ctas button { width: 100%; }
   .hero-ctas button { height: 52px; justify-content: center; font-size: .9375rem; }
-  .hero-proof { display: flex; flex-direction: column; gap: 8px; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--border); }
-  .hero-proof-label { font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; }
-  .hero-proof-names { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--font-display); font-size: 1.3125rem; }
 
   /* projects: dark band with a swipeable card rail */
   .projects { padding: 40px 0 44px; background: var(--bg-dark); }
@@ -711,10 +708,6 @@ button { font: inherit; }
     <div class="hero-ctas reveal d3">
       <a href="#contact"><button class="btn-primary" data-i18n="hero.cta1">Contattami →</button></a>
       <a href="#projects"><button class="btn-ghost" data-i18n="hero.cta2">Guarda i progetti</button></a>
-    </div>
-    <div class="hero-proof reveal d4">
-      <span class="hero-proof-label" data-i18n="hero.proof">App iOS per grandi marchi</span>
-      <div class="hero-proof-names"><span>Moncler</span><span>Prada</span><span>Italia.it</span></div>
     </div>
   </div>
 </section>
@@ -993,7 +986,7 @@ const COPY = {
       h1a: 'Sviluppo siti web', h1b: 'e app mobile', h1em: 'moderni.',
       sub: 'Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.',
       cta1: 'Contattami →', cta2: 'Guarda i progetti',
-      chip: 'Sviluppatore web & mobile freelance', proof: 'App iOS per grandi marchi',
+      chip: 'Sviluppatore web & mobile freelance',
     },
     about: {
       label: 'Chi sono',
@@ -1072,7 +1065,7 @@ const COPY = {
       h1a: 'I build modern', h1b: 'websites & apps', h1em: 'that work.',
       sub: 'I work with restaurants, B&Bs, and local businesses to create digital products that deliver real results: more bookings, more leads, more customers.',
       cta1: 'Contact me →', cta2: 'View projects',
-      chip: 'Freelance web & mobile developer', proof: 'iOS apps for major brands',
+      chip: 'Freelance web & mobile developer',
     },
     about: {
       label: 'About',
