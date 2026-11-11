@@ -351,8 +351,6 @@ button { font: inherit; }
 .next-status .pulse::after { content:''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: nextPulse 2.2s ease-out infinite; }
 @keyframes nextPulse { 0% { transform: scale(1); opacity: .65; } 100% { transform: scale(3.4); opacity: 0; } }
 .next-tagline { font-family: var(--font-display); font-size: clamp(1.2rem, 2.1vw, 1.5rem); font-style: italic; color: rgba(255,255,255,.85); font-weight: 400; line-height: 1.35; margin-bottom: 1.1rem; max-width: 430px; }
-.next-soon { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; color: rgba(255,255,255,.42); font-weight: 300; margin-top: .25rem; }
-.next-soon svg { color: var(--accent); flex: 0 0 auto; }
 
 /* feature list */
 .next-features { list-style: none; display: flex; flex-direction: column; gap: 16px; }
@@ -526,7 +524,6 @@ main { display: flex; flex-direction: column; }
 /* in the works: just the card */
 .next .proj-header { display: none; }
 .next-status { color: var(--label-dark); }
-.next-soon { color: rgba(255,255,255,.6); }
 .next-feature .nf-check { width: 16px; height: 16px; background: none; color: var(--label-dark); margin-top: 2px; }
 .next-feature p { color: rgba(255,255,255,.82); }
 
@@ -1038,18 +1035,20 @@ main { display: flex; flex-direction: column; }
           <span data-i18n="next.status">In sviluppo</span>
         </span>
         <h3 class="proj-title">LodgeOS</h3>
-        <p class="next-tagline" data-i18n="next.tagline">Il gestionale che parla la lingua dell'ospitalità.</p>
-        <p class="proj-desc" data-i18n="next.desc">Una piattaforma per B&amp;B, agriturismi e piccoli hotel: tutta la gestione della struttura in un unico posto, pensata per chi ospita.</p>
-        <span class="next-soon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          <span data-i18n="next.soon">Presto disponibile</span>
-        </span>
+        <p class="next-tagline" data-i18n="next.tagline">Le camere e il ristorante, in un solo sistema.</p>
+        <p class="proj-desc" data-i18n="next.desc">Il gestionale per agriturismi, B&amp;B e piccoli hotel con ristorante: prenoti una camera in mezza pensione e le cene compaiono da sole in sala, giorno per giorno.</p>
+        <div class="proj-btns">
+          <a href="https://lodgeos.it/" target="_blank" rel="noopener" class="btn-outline-light">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            <span data-i18n="next.visit">Visita lodgeos.it</span>
+          </a>
+        </div>
       </div>
       <ul class="next-features">
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f1">Camere e ristorante connessi: i coperti si generano dalle prenotazioni.</p></li>
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f2">Calendario prenotazioni in tempo reale.</p></li>
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f3">Gestione ospiti e anagrafiche.</p></li>
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f4">Servizio sala e coperti giornalieri.</p></li>
+        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f1">Trattamenti collegati alla sala: B&amp;B, mezza pensione e pensione completa creano da soli i coperti.</p></li>
+        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f2">Calendario delle camere con arrivi, partenze e pulizie del giorno.</p></li>
+        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f3">Servizio in sala su tablet, con pianta della sala e timeline della serata.</p></li>
+        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f4">Eventi con disposizione propria, menu con i 14 allergeni UE e prenotazioni online.</p></li>
         <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f5">Più strutture gestite, dati sempre separati.</p></li>
       </ul>
     </div>
@@ -1173,13 +1172,13 @@ const COPY = {
     next: {
       label: 'In lavorazione', h2: 'Il prossimo progetto',
       status: 'In sviluppo',
-      tagline: 'Il gestionale che parla la lingua dell\'ospitalità.',
-      desc: 'Una piattaforma per B&B, agriturismi e piccoli hotel: tutta la gestione della struttura in un unico posto, pensata per chi ospita.',
-      soon: 'Presto disponibile',
-      f1: 'Camere e ristorante connessi: i coperti si generano dalle prenotazioni.',
-      f2: 'Calendario prenotazioni in tempo reale.',
-      f3: 'Gestione ospiti e anagrafiche.',
-      f4: 'Servizio sala e coperti giornalieri.',
+      tagline: 'Le camere e il ristorante, in un solo sistema.',
+      desc: 'Il gestionale per agriturismi, B&B e piccoli hotel con ristorante: prenoti una camera in mezza pensione e le cene compaiono da sole in sala, giorno per giorno.',
+      visit: 'Visita lodgeos.it',
+      f1: 'Trattamenti collegati alla sala: B&B, mezza pensione e pensione completa creano da soli i coperti.',
+      f2: 'Calendario delle camere con arrivi, partenze e pulizie del giorno.',
+      f3: 'Servizio in sala su tablet, con pianta della sala e timeline della serata.',
+      f4: 'Eventi con disposizione propria, menu con i 14 allergeni UE e prenotazioni online.',
       f5: 'Più strutture gestite, dati sempre separati.',
     },
     services: {
@@ -1252,13 +1251,13 @@ const COPY = {
     next: {
       label: 'In the works', h2: "What's next",
       status: 'In development',
-      tagline: 'Hospitality management that finally connects the dots.',
-      desc: 'A platform for B&Bs, agriturismi and small hotels: everything you need to run the property in one place, built for hosts.',
-      soon: 'Coming soon',
-      f1: 'Rooms and restaurant connected: covers are generated straight from bookings.',
-      f2: 'Real-time booking calendar.',
-      f3: 'Guest profiles and management.',
-      f4: 'Dining-room service and daily covers.',
+      tagline: 'Your rooms and your restaurant, in one system.',
+      desc: 'Management software for agriturismi, B&Bs and small hotels with a restaurant: book a half-board stay and its dinners appear on the restaurant floor, day by day.',
+      visit: 'Visit lodgeos.it',
+      f1: 'Board plans linked to the restaurant: B&B, half board and full board create the covers on their own.',
+      f2: 'Room calendar with the day\'s arrivals, departures and housekeeping.',
+      f3: 'Restaurant service on a tablet, with the floor plan and the evening\'s timeline.',
+      f4: 'Events with their own layout, a menu with the 14 EU allergens, and online bookings.',
       f5: 'Multiple properties, data always kept separate.',
     },
     services: {
