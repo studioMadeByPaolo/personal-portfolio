@@ -11,8 +11,8 @@
 <meta name="keywords" content="web development, mobile development, freelance developer, iOS, Android, web design, Italy, Paolo Ferrari, Made by Paolo">
 <meta name="author" content="Paolo Ferrari">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="theme-color" content="#C05728">
-<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#110D0A">
+<meta name="color-scheme" content="dark">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="format-detection" content="telephone=no">
 <link rel="canonical" href="https://www.madebypaolo.it/">
@@ -154,981 +154,408 @@
 </script>
 <style>
 :root {
-  --bg: #F7F5F1;
-  --bg2: #EEEAE3;
-  --bg-dark: #171410;
-  --text: #1C1917;
-  --text-muted: #7C7268;
-  --text-light: #B8B0A8;
-  --accent: #C05728;
-  --accent-rgb: 192, 87, 40;
-  --border: #E2DDD6;
+  --bg: #110D0A;
+  --bg2: #17120E;
+  --text: #F2E9DE;
+  --text-soft: #CFC3B5;
+  --text-muted: #A89A8C;
+  --accent: #E07A45;
+  --on-accent: #1A0F09;
+  --green: #8CC996;
+  --line: rgba(242,233,222,.12);
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
-  --radius: 16px;
-  --radius-sm: 10px;
-  --shadow: 0 2px 8px rgba(28,25,23,.06), 0 1px 3px rgba(28,25,23,.04);
-  --shadow-lg: 0 24px 64px rgba(28,25,23,.10);
-  --pad: clamp(24px, 6vw, 88px);
-  --section: clamp(80px, 10vw, 128px);
-  --max-w: 1200px;
+  --pad: clamp(16px, 5vw, 72px);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; }
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad); }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+a { color: inherit; }
+a:hover { color: var(--accent); }
+button, input, textarea { font: inherit; }
+em { font-style: italic; color: var(--accent); }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--pad); width: 100%; }
 
 /* a11y */
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0;
-  margin: -1px; overflow: hidden; clip: rect(0,0,0,0);
-  white-space: nowrap; border: 0;
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; top: -48px; left: 8px; z-index: 1000; background: var(--text); color: var(--bg); padding: 8px 14px; border-radius: 6px; font-size: .875rem; transition: top .2s; }
+.skip-link:focus { top: 8px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 10; background: rgba(17,13,10,.72); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(242,233,222,.07); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+.nav-logo { white-space: nowrap; font-family: var(--font-display); font-size: 26px; line-height: 1; text-decoration: none; color: var(--text); }
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a, .lang-btn { color: #B9AC9E; text-decoration: none; font-size: 14px; }
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.lang-toggle { display: flex; gap: 2px; }
+.lang-btn { background: none; border: 0; cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: .08em; padding: 10px 6px; }
+.lang-btn.active { color: var(--text); }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .2s ease, border-color .2s ease, background-color .2s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { color: var(--on-accent); background: #E98A57; }
+.btn-ghost { border-color: rgba(242,233,222,.22); color: var(--text); font-weight: 400; }
+.btn-ghost:hover { border-color: rgba(242,233,222,.5); color: var(--text); }
+.btn-outline { border-color: var(--accent); color: var(--text); font-weight: 500; min-height: 48px; padding: 0 22px; }
+.btn-sm { min-height: 44px; padding: 0 20px; font-size: 14px; }
+
+/* typography */
+.label { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+.h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(52px, 7.6vw, 116px); line-height: .95; letter-spacing: -.02em; }
+.h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(42px, 5.2vw, 78px); line-height: 1; letter-spacing: -.015em; }
+.soft { color: var(--text-soft); }
+.hero-sub { margin-top: 28px; max-width: 460px; font-size: 18px; }
+.modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.mode { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid rgba(242,233,222,.16); border-radius: 999px; font-size: 12px; color: var(--text-soft); }
+.desc { margin-top: 18px; color: var(--text-soft); }
+.links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 22px; font-size: 14px; font-weight: 500; }
+.chip { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; padding: 8px 14px; border: 1px solid rgba(242,233,222,.14); border-radius: 999px; font-size: 13px; color: var(--text-soft); }
+.dot-accent { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.status { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 999px; background: rgba(140,201,150,.12); color: #A9DDB2; letter-spacing: .08em; }
+.pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 1.8s ease-out infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(140,201,150,.55); } 100% { box-shadow: 0 0 0 10px rgba(140,201,150,0); } }
+
+/* scrolly: sticky 3D stage under the copy */
+.scrolly { position: relative; }
+.stage { position: sticky; top: 0; height: 100vh; margin-bottom: -100vh; z-index: 0; overflow: hidden; }
+.glow { position: absolute; inset: 0; background: radial-gradient(55% 50% at 70% 50%, rgba(224,122,69,.13), rgba(224,122,69,0) 70%); }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; }
+.fallback { display: none; position: absolute; inset: 0; align-items: center; justify-content: flex-end; padding-right: 12%; perspective: 1200px; }
+.fallback img { width: 240px; height: auto; border-radius: 34px; border: 10px solid var(--accent); transform: rotateY(-22deg) rotateX(6deg); box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+.no-gl .fallback { display: flex; }
+.no-gl #scene, .no-gl .hint { display: none; }
+.dots { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); display: flex; gap: 22px; }
+.dot { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; color: rgba(242,233,222,.58); transition: color .3s; }
+.dot::before { content: ''; display: block; height: 2px; width: 12px; border-radius: 2px; background: currentColor; transition: width .3s; }
+.dot.on { color: var(--accent); }
+.dot.on::before { width: 32px; }
+.hint { position: absolute; right: clamp(16px,3vw,40px); top: 96px; display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .06em; color: var(--text-muted); }
+.step { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; padding: 96px 0; pointer-events: none; }
+.copy { width: min(540px, 46%); pointer-events: auto; }
+.cue { display: flex; align-items: center; gap: 14px; margin-top: 64px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); }
+.cue-track { position: relative; width: 1px; height: 44px; background: rgba(242,233,222,.15); }
+.cue-track::after { content: ''; position: absolute; inset: 0; background: var(--accent); transform-origin: top; animation: cue 2.2s ease-in-out infinite; }
+@keyframes cue { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+.rows { margin-top: 32px; list-style: none; }
+.rows > li { padding: 16px 0; border-top: 1px solid var(--line); }
+.rows > li:last-child { border-bottom: 1px solid var(--line); }
+.checks { list-style: none; margin-top: 22px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: var(--text-soft); }
+.checks li { display: flex; gap: 12px; }
+.checks svg { flex: none; margin-top: 3px; }
+.proc { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; }
+.proc-n { font-family: var(--font-display); font-style: italic; font-size: 26px; line-height: 1.1; color: var(--accent); }
+.proc h3 { font-size: 18px; font-weight: 600; }
+.proc p { margin-top: 4px; font-size: 15px; color: var(--text-soft); }
+
+/* plain sections */
+.section { position: relative; z-index: 2; background: var(--bg); border-top: 1px solid rgba(242,233,222,.08); padding: clamp(80px, 10vw, 140px) 0; }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.intro { margin-top: 24px; max-width: 380px; color: var(--text-soft); }
+.exp-item { padding: 28px 0; border-top: 1px solid var(--line); }
+.exp-item:last-child { border-bottom: 1px solid var(--line); }
+.exp-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.exp-head h3 { font-size: 24px; font-weight: 600; }
+.exp-period { font-size: 13px; color: var(--text-muted); display: inline-flex; align-items: center; gap: 8px; }
+.exp-period.current { color: #A9DDB2; }
+.exp-period.current::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+.exp-role { margin: 4px 0 10px; font-size: 14px; color: var(--text-muted); }
+.exp-desc { color: var(--text-soft); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.stats { position: relative; z-index: 2; background: var(--bg2); border-top: 1px solid rgba(242,233,222,.08); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding-top: 56px; padding-bottom: 56px; list-style: none; }
+.stat-n { font-family: var(--font-display); font-size: 64px; line-height: 1; color: var(--accent); }
+.stat-l { margin-top: 10px; font-size: 14px; color: var(--text-soft); }
+.contact-h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(56px, 7vw, 110px); line-height: .95; letter-spacing: -.02em; }
+.contact-alt { margin-top: 28px; font-size: 14px; color: var(--text-muted); }
+.contact-alt a { display: inline-block; font-size: 20px; font-weight: 500; color: var(--text); }
+.card { padding: clamp(22px, 3vw, 36px); border-radius: 24px; background: var(--bg2); border: 1px solid rgba(242,233,222,.1); }
+.form { display: flex; flex-direction: column; gap: 18px; }
+.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--text-soft); }
+.f-input, .f-area { min-height: 48px; padding: 0 16px; border-radius: 12px; border: 1px solid rgba(242,233,222,.16); background: var(--bg); color: var(--text); font-size: 16px; }
+.f-area { padding: 14px 16px; resize: vertical; min-height: 140px; }
+.f-input::placeholder, .f-area::placeholder { color: #8E8276; }
+.f-input.err, .f-area.err { border-color: #E5735F; }
+.consent-row { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--text-muted); }
+.consent-row input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: var(--accent); }
+.consent-row input.err { outline: 2px solid #E5735F; outline-offset: 2px; }
+.consent-row a { color: var(--text-soft); }
+.btn-submit { width: 100%; font-size: 16px; border: 0; }
+.btn-submit:disabled { opacity: .6; cursor: default; transform: none; }
+.success { display: none; text-align: center; padding: 24px 0; }
+.success-icon { width: 52px; height: 52px; margin: 0 auto 16px; border-radius: 50%; display: grid; place-items: center; background: rgba(140,201,150,.14); color: #A9DDB2; }
+.success h3 { font-family: var(--font-display); font-weight: 400; font-size: 36px; }
+.success p { margin-top: 6px; color: var(--text-soft); }
+.footer { position: relative; z-index: 2; background: var(--bg); border-top: 1px solid rgba(242,233,222,.08); }
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding-top: 28px; padding-bottom: 28px; font-size: 13px; color: var(--text-muted); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { color: var(--text-muted); }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (max-width: 820px) {
+  .nav-links, .hide-sm { display: none !important; }
+  .nav-logo { font-size: 22px; }
+  /* devices fill the top of the screen, the copy card starts below them and scrolls over */
+  .step { align-items: flex-start; padding: 54vh 0 32px; }
+  .hero-sub { font-size: 16px; }
+  .copy { width: 100%; background: rgba(17,13,10,.8); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(242,233,222,.1); border-radius: 20px; padding: 22px; }
+  .copy.plain { background: none; border: 0; -webkit-backdrop-filter: none; backdrop-filter: none; padding: 0; }
+  .glow { background: radial-gradient(75% 40% at 50% 28%, rgba(224,122,69,.16), rgba(224,122,69,0) 70%); }
+  .fallback { justify-content: center; align-items: flex-start; padding: 110px 0 0; }
+  .fallback img { width: 160px; }
+  .split, .form-row { grid-template-columns: minmax(0, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.skip-link {
-  position: absolute; top: -40px; left: 8px; z-index: 1000;
-  background: var(--text); color: #fff; padding: 8px 14px;
-  border-radius: 6px; font-size: .875rem; transition: top .2s;
-}
-.skip-link:focus { top: 8px; outline: 2px solid var(--accent); outline-offset: 2px; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
-}
-
-/* reveal */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
-.reveal.in { opacity: 1; transform: none; }
-.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
-
-/* section labels */
-.label { font-size: .72rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; display: block; }
-.section-h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; color: var(--text); }
-
-/* buttons */
-.btn-primary {
-  display: inline-flex; align-items: center; gap: .4em;
-  padding: 11px 24px; background: var(--accent); color: #fff;
-  font-family: var(--font-body); font-size: .875rem; font-weight: 500;
-  border-radius: 100px; border: none; cursor: pointer;
-  transition: filter .2s, transform .15s;
-}
-.btn-primary:hover { filter: brightness(.88); transform: translateY(-1px); }
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: .4em;
-  padding: 11px 24px; background: transparent; color: var(--text);
-  font-family: var(--font-body); font-size: .875rem; font-weight: 500;
-  border-radius: 100px; border: 1.5px solid var(--border); cursor: pointer;
-  transition: border-color .2s, background .2s, transform .15s;
-}
-.btn-ghost:hover { border-color: var(--text-muted); background: var(--bg2); transform: translateY(-1px); }
-.btn-outline-light {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 8px 18px; background: transparent; color: rgba(255,255,255,.75);
-  font-family: var(--font-body); font-size: .8125rem; font-weight: 500;
-  border-radius: 100px; border: 1.5px solid rgba(255,255,255,.14); cursor: pointer;
-  transition: border-color .2s, background .2s;
-}
-.btn-outline-light:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.07); }
-.btn-sm { padding: 9px 18px; font-size: .8125rem; }
-
-/* ── NAV ── */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 20px var(--pad);
-  display: flex; align-items: center; justify-content: space-between;
-  transition: background .3s, box-shadow .3s;
-}
-.nav.scrolled { background: rgba(247,245,241,.9); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--border); }
-.nav-logo { font-size: .875rem; font-weight: 600; letter-spacing: -.01em; }
-.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-.nav-links a { font-size: .875rem; color: var(--text-muted); transition: color .2s; }
-.nav-links a:hover { color: var(--text); }
-.nav-burger { display: none; background: none; border: none; cursor: pointer; color: var(--text); padding: 4px; }
-.nav-right { display: flex; align-items: center; gap: 8px; }
-.nav-cta-wrap { display: flex; align-items: center; gap: 8px; }
-@media(max-width:768px){
-  .nav-burger { display: block; }
-  .nav-links { display: none; }
-  .nav-links.open {
-    display: flex; flex-direction: column; position: fixed; top: 64px;
-    left: 0; right: 0; background: var(--bg); padding: 20px var(--pad) 28px;
-    gap: 1.25rem; align-items: flex-start; border-bottom: 1px solid var(--border);
-  }
-  .nav-links .nav-cta-wrap .lang-toggle { display: none; }
-}
-
-/* ── HERO ── */
-.hero {
-  min-height: 100vh; display: flex; align-items: center;
-  padding: 120px var(--pad) 80px; position: relative; overflow: hidden;
-}
-.hero-orb { position: absolute; right: -6%; top: 50%; transform: translateY(-50%); width: 540px; height: 540px; border-radius: 50%; background: var(--accent); opacity: .055; pointer-events: none; }
-.hero-ring { position: absolute; right: 14%; bottom: 10%; width: 100px; height: 100px; border-radius: 50%; border: 1.5px solid var(--accent); opacity: .18; pointer-events: none; }
-.hero-content { max-width: 780px; position: relative; z-index: 1; }
-.hero-h1 {
-  font-family: var(--font-display); font-size: clamp(3.2rem, 7.5vw, 6.5rem);
-  font-weight: 300; line-height: 1.04; letter-spacing: -.02em; margin-bottom: 1.75rem;
-}
-.hero-h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
-.hero-sub { font-size: clamp(.95rem, 1.4vw, 1.1rem); color: var(--text-muted); font-weight: 300; line-height: 1.8; max-width: 540px; margin-bottom: 2.5rem; }
-.hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-
-/* ── ABOUT ── */
-.about { padding: var(--section) var(--pad); background: var(--bg2); }
-.about-grid { display: grid; grid-template-columns: 1fr; max-width: 640px; }
-.about-h2 { font-family: var(--font-display); font-size: clamp(1.75rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.1rem; }
-.about-body { font-size: 1rem; color: var(--text-muted); font-weight: 300; line-height: 1.85; margin-bottom: 1.75rem; }
-.about-points { display: flex; flex-direction: column; gap: .65rem; }
-.about-point { display: flex; align-items: center; gap: 12px; font-size: .9375rem; }
-.about-point::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-@media(max-width:860px){ .about-grid { grid-template-columns: 1fr; } }
-
-/* ── EXPERIENCE ── */
-.exp { padding: var(--section) var(--pad); }
-.exp .container { text-align: center; }
-.exp-list { position: relative; max-width: 620px; margin: clamp(36px, 5vw, 56px) auto 0; text-align: left; }
-.exp-list::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
-.exp-item { position: relative; padding-left: 38px; padding-bottom: clamp(32px, 4vw, 46px); }
-.exp-item:last-child { padding-bottom: 0; }
-.exp-item::before { content: ''; position: absolute; left: 0; top: 4px; width: 15px; height: 15px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border); box-sizing: border-box; }
-.exp-item.current::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px rgba(var(--accent-rgb),.14); }
-.exp-period { font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; display: block; }
-.exp-company { font-family: var(--font-display); font-size: clamp(1.4rem, 2.4vw, 1.75rem); font-weight: 600; line-height: 1.15; }
-.exp-role { font-size: .9rem; color: var(--text-muted); font-weight: 500; margin-bottom: .7rem; }
-.exp-desc { font-size: .9375rem; color: var(--text-muted); font-weight: 300; line-height: 1.8; max-width: 540px; }
-.exp-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 1rem; }
-.exp-tag { font-size: .72rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; letter-spacing: .02em; background: var(--bg2); color: var(--text-muted); border: 1px solid var(--border); }
-
-/* ── PROJECTS ── */
-.projects { padding: var(--section) var(--pad); }
-.proj-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(36px, 5vw, 56px); flex-wrap: wrap; gap: 16px; }
-.proj-card { border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
-
-/* featured */
-.proj-featured {
-  background: #1A1714; padding: clamp(28px, 5vw, 60px);
-  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; min-height: 500px;
-}
-.proj-title { font-family: var(--font-display); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 400; line-height: 1.15; margin-bottom: .875rem; color: #fff; }
-.proj-desc { font-size: .9375rem; color: rgba(255,255,255,.45); font-weight: 300; line-height: 1.85; margin-bottom: 1.5rem; max-width: 400px; }
-.proj-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.75rem; }
-.tag { font-size: .72rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; letter-spacing: .04em; }
-.tag-accent { background: rgba(192,87,40,.22); color: var(--accent); }
-.tag-white { background: rgba(255,255,255,.08); color: rgba(255,255,255,.65); }
-.proj-btns { display: flex; flex-wrap: wrap; gap: 8px; }
-.proj-mockups { position: relative; height: 340px; display: flex; align-items: center; justify-content: center; }
-.mock-phone { border-radius: 18px; overflow: hidden; box-shadow: 0 24px 56px rgba(0,0,0,.55); flex-shrink: 0; background: linear-gradient(135deg, #2a2520 0%, #1c1814 100%); }
-.mock-web { border-radius: 10px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,.5); background: linear-gradient(135deg, #2a2520 0%, #1c1814 100%); }
-.mock-phone img, .mock-web img { width: 100%; height: 100%; object-fit: cover; display: block; }
-@media(max-width:768px){
-  /* wider strips: every section doubles its side gutter (section padding + the
-     inner .container padding). On mobile that inset is too heavy and clips the
-     project mockups, so drop the redundant section padding and let the
-     .container be the single gutter. Headers stay aligned across all sections. */
-  .hero, .about, .exp, .projects, .next, .services, .process, .contact { padding-left: 0 !important; padding-right: 0 !important; }
-  .proj-featured { grid-template-columns: 1fr; padding: 30px 18px; }
-  .proj-mockups { height: 240px; }
-  /* Nike: center the phones (drop the desktop left shift), website on top at bottom-right */
-  .proj-mockups .mock-phone { width: 88px !important; height: 182px !important; }
-  .proj-mockups .mock-phone:first-child { transform: rotate(-5deg) translateY(10px) !important; }
-  .proj-mockups .mock-phone:nth-child(2) { transform: rotate(4deg) translateY(-8px) !important; }
-  .mock-web[style*="absolute"] { width: 166px !important; height: 104px !important; right: 4% !important; bottom: 8% !important; }
-  /* RO.BE: overlap the two web mockups so both fit the column */
-  .proj-mockups .mock-web:not([style*="absolute"]) { width: 166px !important; height: 104px !important; }
-  .proj-mockups .mock-web:not([style*="absolute"]):first-child { transform: rotate(-4deg) !important; margin-right: -60px !important; }
-  .proj-mockups .mock-web:not([style*="absolute"]):nth-child(2) { transform: rotate(4deg) !important; }
-}
-
-/* ── NEXT / IN LAVORAZIONE ── */
-.next { padding: var(--section) var(--pad); background: var(--bg); }
-.next .proj-featured { margin-bottom: 0; }
-.next-status { display: inline-flex; align-items: center; gap: 9px; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: rgba(var(--accent-rgb),.14); padding: 6px 14px; border-radius: 100px; margin-bottom: 1.4rem; }
-.next-status .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); position: relative; }
-.next-status .pulse::after { content:''; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: nextPulse 2.2s ease-out infinite; }
-@keyframes nextPulse { 0% { transform: scale(1); opacity: .65; } 100% { transform: scale(3.4); opacity: 0; } }
-.next-tagline { font-family: var(--font-display); font-size: clamp(1.2rem, 2.1vw, 1.5rem); font-style: italic; color: rgba(255,255,255,.85); font-weight: 400; line-height: 1.35; margin-bottom: 1.1rem; max-width: 430px; }
-
-/* feature list */
-.next-features { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-.next-feature { display: flex; align-items: flex-start; gap: 13px; }
-.next-feature .nf-check { flex: 0 0 auto; width: 27px; height: 27px; border-radius: 8px; background: rgba(var(--accent-rgb),.16); color: var(--accent); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-.next-feature p { color: rgba(255,255,255,.72); font-size: .95rem; font-weight: 300; line-height: 1.55; }
-
-/* ── SERVICES ── */
-.services { padding: var(--section) var(--pad); background: var(--bg2); }
-.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: clamp(36px, 5vw, 56px); }
-.service-card { background: var(--bg); border-radius: var(--radius); padding: clamp(24px, 3.5vw, 36px); border: 1px solid var(--border); transition: box-shadow .3s, transform .3s; }
-.service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-.service-n { font-family: var(--font-display); font-size: 2.25rem; font-weight: 300; color: var(--accent); opacity: .3; line-height: 1; margin-bottom: 1.1rem; }
-.service-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; line-height: 1.25; }
-.service-desc { font-size: .875rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
-@media(max-width:860px){ .services-grid { grid-template-columns: 1fr; } }
-
-/* ── PROCESS ── */
-.process { padding: var(--section) var(--pad); }
-.process-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: clamp(36px, 5vw, 56px); position: relative; }
-.process-grid::before { content: ''; position: absolute; top: 27px; left: calc(16.66% + 16px); right: calc(16.66% + 16px); height: 1px; background: var(--border); }
-.step-num { width: 54px; height: 54px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--text); background: var(--bg); position: relative; z-index: 1; margin-bottom: 1.5rem; }
-.step-num.active-step { background: var(--accent); border-color: var(--accent); color: #fff; }
-.step-title { font-size: 1rem; font-weight: 500; margin-bottom: .45rem; }
-.step-desc { font-size: .875rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
-@media(max-width:860px){ .process-grid { grid-template-columns: 1fr; } .process-grid::before { display: none; } }
-
-/* ── CONTACT ── */
-.contact { padding: var(--section) var(--pad); background: var(--bg-dark); color: #fff; }
-.contact-inner { max-width: 620px; margin: 0 auto; text-align: center; }
-.contact-h2 { font-family: var(--font-display); font-size: clamp(3rem, 7.5vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1.1rem; }
-.contact-h2 em { font-style: italic; color: var(--accent); }
-.contact-sub { font-size: 1rem; color: rgba(255,255,255,.45); font-weight: 300; line-height: 1.75; margin-bottom: 2.75rem; }
-.contact-form { display: flex; flex-direction: column; gap: 13px; text-align: left; margin-bottom: 1.75rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
-.f-input, .f-area {
-  width: 100%; padding: 14px 18px;
-  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.1);
-  border-radius: var(--radius-sm); color: #fff;
-  font-family: var(--font-body); font-size: .9375rem; font-weight: 300;
-  outline: none; transition: border-color .2s, background .2s;
-}
-.f-input::placeholder, .f-area::placeholder { color: rgba(255,255,255,.28); }
-.f-input:focus, .f-area:focus { border-color: var(--accent); background: rgba(255,255,255,.08); }
-.f-input.err, .f-area.err { border-color: #E05050; }
-.f-area { min-height: 130px; resize: vertical; line-height: 1.65; }
-.btn-submit {
-  width: 100%; padding: 15px; background: var(--accent); color: #fff;
-  border: none; border-radius: 100px; font-family: var(--font-body);
-  font-size: .9375rem; font-weight: 500; cursor: pointer; transition: filter .2s;
-}
-.btn-submit:hover { filter: brightness(.88); }
-.btn-submit:disabled { opacity: .6; cursor: not-allowed; }
-.consent-row {
-  display: flex; align-items: flex-start; gap: 10px;
-  font-size: .8125rem; color: rgba(255,255,255,.55); font-weight: 300;
-  line-height: 1.55; padding: 4px 2px;
-}
-.consent-row input[type="checkbox"] {
-  appearance: none; -webkit-appearance: none;
-  width: 17px; height: 17px; margin-top: 2px; flex-shrink: 0;
-  border: 1.5px solid rgba(255,255,255,.25); border-radius: 4px;
-  background: rgba(255,255,255,.055); cursor: pointer;
-  transition: border-color .2s, background .2s;
-  display: grid; place-items: center;
-}
-.consent-row input[type="checkbox"]:hover { border-color: rgba(255,255,255,.5); }
-.consent-row input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
-.consent-row input[type="checkbox"]:checked::after {
-  content: ''; width: 9px; height: 5px;
-  border-left: 2px solid #fff; border-bottom: 2px solid #fff;
-  transform: rotate(-45deg) translate(1px, -1px);
-}
-.consent-row input[type="checkbox"].err { border-color: #E05050; }
-.consent-row label { cursor: pointer; }
-.consent-row a { color: rgba(255,255,255,.8); text-decoration: underline; text-underline-offset: 2px; }
-.consent-row a:hover { color: #fff; }
-.contact-alt { font-size: .825rem; color: rgba(255,255,255,.28); }
-.contact-alt a { color: rgba(255,255,255,.55); transition: color .2s; }
-.contact-alt a:hover { color: #fff; }
-.success-box { padding: 40px 20px; text-align: center; }
-.success-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(192,87,40,.18); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; color: var(--accent); }
-.success-title { color: #fff; font-family: var(--font-display); font-size: 1.875rem; font-weight: 400; margin-bottom: .5rem; }
-.success-sub { color: rgba(255,255,255,.4); font-size: .9375rem; }
-@media(max-width:600px){ .form-row { grid-template-columns: 1fr; } }
-
-/* ── FOOTER ── */
-.footer { padding: 28px var(--pad); background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,.05); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-.footer-logo { font-size: .875rem; font-weight: 600; color: rgba(255,255,255,.65); }
-.footer-links { display: flex; gap: 18px; }
-.footer-links a { font-size: .8125rem; color: rgba(255,255,255,.45); transition: color .2s; }
-.footer-links a:hover { color: rgba(255,255,255,.85); }
-.footer-copy { font-size: .8rem; color: rgba(255,255,255,.25); }
-
-/* ── LANG TOGGLE ── */
-.lang-mobile-only { display: none; }
-@media(max-width:768px){ .lang-mobile-only { display: flex; } }
-.lang-toggle {
-  display: flex; align-items: center;
-  background: rgba(28,25,23,.06); border-radius: 100px;
-  padding: 3px; gap: 1px;
-}
-.lang-btn {
-  padding: 4px 11px; border-radius: 100px; border: none;
-  font-family: var(--font-body); font-size: .75rem; font-weight: 500;
-  letter-spacing: .04em; cursor: pointer; transition: background .18s, color .18s;
-  background: transparent; color: var(--text-muted);
-}
-.lang-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,.10); }
-
-/* ── REDESIGN ──
-   Shared look for every width: projects right after the hero on a dark band,
-   project cards with the mockups on top, list-style sections, direct email
-   before the form. Width-specific layout follows in the mobile (≤768px) and
-   desktop (≥769px) blocks. */
-.nav-cta-mobile, .nav-mail, .proj-count, .proj-dots, .contact-or, .hero-visual { display: none; }
-:root { --text-muted: #6B6158; --label-light: #A84A20; --label-dark: #E08A5E; }
-.label { color: var(--label-light); }
-
-/* section order: projects move up, right after the hero (menu follows suit) */
-main { display: flex; flex-direction: column; }
-#home { order: 1; } #projects { order: 2; } #about { order: 3; } #experience { order: 4; }
-#next { order: 5; } #services { order: 6; } #process { order: 7; } #contact { order: 8; }
-.nav-links li:nth-child(3) { order: -1; }
-
-/* hero */
-.hero-orb, .hero-ring { display: none; }
-.hero-chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 100px; background: var(--bg2); font-size: .75rem; font-weight: 500; color: #4A433D; margin-bottom: 20px; }
-.hero-chip-dot { width: 7px; height: 7px; border-radius: 50%; background: #3F8F5A; }
-.hero-h1 { font-weight: 400; }
-.hero-sub { color: #5E554D; }
-
-/* projects: dark band, cards with the mockups on top */
-.projects { background: var(--bg-dark); }
-.projects .label { color: var(--label-dark); }
-.projects .section-h2 { color: #fff; }
-.proj-rail .proj-featured {
-  margin: 0; min-height: 0; padding: 0; gap: 0; align-items: stretch;
-  display: flex; flex-direction: column;
-  border-radius: 22px; background: #221E1A; border: 1px solid rgba(255,255,255,.07);
-}
-.proj-rail .proj-featured > div:first-child { display: flex; flex-direction: column; flex: 1; }
-.proj-rail .proj-mockups { order: -1; background: #2A2520; overflow: hidden; }
-.proj-rail .proj-title br { display: none; }
-.proj-rail .proj-desc { color: rgba(255,255,255,.66); max-width: none; }
-.proj-rail .tag { font-size: .6875rem; padding: 4px 10px; }
-.proj-rail .tag-accent { color: var(--label-dark); }
-.proj-rail .proj-btns { margin-top: auto; }
-.proj-rail .btn-outline-light { min-height: 44px; padding: 0 14px; color: #fff; border-color: rgba(255,255,255,.22); }
-.proj-rail .btn-outline-light:first-child { background: #fff; color: var(--bg-dark); border-color: #fff; }
-
-/* about */
-.about { background: var(--bg); }
-.about-point { gap: 12px; border-radius: 14px; background: var(--bg2); line-height: 1.4; }
-.about-point::before {
-  width: 26px; height: 26px;
-  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23A84A20' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center no-repeat;
-}
-
-/* experience: list rows, period on the right */
-.exp .container { text-align: left; }
-.exp-list { border-top: 1px solid var(--border); }
-.exp-list::before, .exp-item::before { display: none; }
-.exp-item { border-bottom: 1px solid var(--border); display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: baseline; }
-.exp-company { grid-column: 1; grid-row: 1; font-weight: 400; }
-.exp-period { grid-column: 2; grid-row: 1; margin: 0; font-size: .6875rem; letter-spacing: .06em; white-space: nowrap; color: var(--text-muted); }
-.exp-item.current .exp-period { color: var(--label-light); }
-.exp-role, .exp-desc, .exp-tags { grid-column: 1 / -1; }
-.exp-tag { background: transparent; color: #4A433D; }
-
-/* in the works: just the card */
-.next .proj-header { display: none; }
-.next-status { color: var(--label-dark); }
-.next-feature .nf-check { width: 16px; height: 16px; background: none; color: var(--label-dark); margin-top: 2px; }
-.next-feature p { color: rgba(255,255,255,.82); }
-
-/* services: numbered list */
-.services { background: var(--bg); }
-.services-grid { grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 1px solid var(--border); }
-.service-card, .service-card:hover { background: none; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; transform: none; display: grid; }
-.service-n { color: var(--label-light); opacity: 1; margin: 0; }
-
-/* process */
-.process { background: var(--bg2); }
-.process .section-h2 br { display: none; }
-.process-grid::before { display: none; }
-.process-grid > div { position: relative; }
-.step-num { margin: 0; border: 1px solid #D6D0C7; }
-
-/* contact: direct email first, labelled fields */
-.contact .label { color: var(--label-dark); }
-.contact-h2 { font-weight: 400; }
-.contact-h2 em { color: var(--label-dark); }
-.contact-sub { color: rgba(255,255,255,.66); }
-.contact-alt > span { display: none; }
-.contact-alt a {
-  height: 52px; padding: 0 18px; display: flex; align-items: center; justify-content: space-between;
-  border-radius: 14px; border: 1px solid rgba(255,255,255,.18); color: #fff; font-size: .9375rem;
-}
-.contact-alt a::after { content: '↗'; font-size: 1rem; }
-.contact-form .sr-only { position: static; width: auto; height: auto; margin: 0 0 6px; overflow: visible; clip: auto; white-space: normal; display: block; font-size: .8125rem; color: rgba(255,255,255,.75); }
-.f-input, .f-area { border-radius: 12px; border-color: rgba(255,255,255,.14); }
-.f-input { height: 50px; padding: 0 16px; }
-.f-area { padding: 14px 16px; }
-.consent-row { color: rgba(255,255,255,.66); }
-.btn-submit { height: 54px; padding: 0 32px; }
-
-/* footer */
-.footer-logo { color: #fff; }
-.footer-links a { color: rgba(255,255,255,.7); }
-.footer-copy { color: rgba(255,255,255,.55); }
-
-/* ── MOBILE (≤768px): swipeable project rail, full-screen menu, stacked sections ── */
-@media(max-width:768px){
-  .label { margin-bottom: .9rem; font-size: .6875rem; }
-  .section-h2 { font-size: 2.125rem; line-height: 1.05; }
-  .container { padding: 0 20px; }
-
-  /* nav: solid bar, header CTA + round menu button, language lives in the menu.
-     The blur sits on a pseudo-element: backdrop-filter on .nav itself would
-     become the containing block of the fixed full-screen menu and clip it */
-  .nav, .nav.scrolled { height: 64px; padding: 0 20px; background: none; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 1px 0 var(--border); }
-  .nav::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(247,245,241,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-  .nav-logo { font-size: .9375rem; }
-  .lang-mobile-only { display: none; }
-  .nav-cta-mobile { display: inline-flex; height: 40px; padding: 0 16px; }
-  .nav-burger { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 100px; padding: 0; }
-  body.menu-open { overflow: hidden; }
-  body.menu-open .nav-burger { background: var(--text); border-color: var(--text); color: #fff; }
-  body.menu-open .nav-cta-mobile { visibility: hidden; }
-  .nav-links.open {
-    top: 64px; bottom: 0; padding: 18px 20px 24px; gap: 0; align-items: stretch;
-    border-bottom: 0; overflow-y: auto;
-  }
-  .nav-links.open li:not(.nav-cta-wrap) a {
-    height: 62px; display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid var(--border); color: var(--text);
-    font-family: var(--font-display); font-size: 1.875rem; line-height: 1;
-  }
-  .nav-links.open li:not(.nav-cta-wrap) a::after { font-family: var(--font-body); font-size: .75rem; color: var(--text-muted); }
-  .nav-links.open li:nth-child(3) a::after { content: '01'; }
-  .nav-links.open li:nth-child(1) a::after { content: '02'; }
-  .nav-links.open li:nth-child(2) a::after { content: '03'; }
-  .nav-links.open li:nth-child(4) a::after { content: '04'; }
-  .nav-links.open li:nth-child(5) a::after { content: '05'; }
-  .nav-links.open .nav-cta-wrap { order: 10; margin-top: auto; padding-top: 24px; flex-direction: column; align-items: stretch; gap: 14px; }
-  .nav-links.open .nav-cta-wrap .lang-toggle { display: flex; align-self: flex-end; background: var(--bg2); }
-  .nav-links.open .nav-cta-wrap .lang-btn { min-width: 52px; height: 38px; font-size: .8125rem; }
-  .nav-links.open .nav-cta-wrap .btn-primary { width: 100%; height: 54px; justify-content: center; font-size: .9375rem; }
-  .nav-links.open .nav-mail { display: block; text-align: center; font-size: .8125rem; color: var(--text-muted); }
-
-  /* hero */
-  .hero { min-height: 0; padding: 100px 0 40px; }
-  .hero-h1 { font-size: 2.875rem; line-height: 1.02; letter-spacing: -.015em; margin-bottom: 20px; }
-  .hero-sub { font-size: 1rem; line-height: 1.6; margin-bottom: 24px; }
-  .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; }
-  .hero-ctas a, .hero-ctas button { width: 100%; }
-  .hero-ctas button { height: 52px; justify-content: center; font-size: .9375rem; }
-
-  /* projects: swipeable card rail */
-  .projects { padding: 40px 0 44px; }
-  .projects .proj-header { margin-bottom: 22px; flex-wrap: nowrap; }
-  .proj-count { display: block; font-size: .8125rem; color: rgba(255,255,255,.6); font-variant-numeric: tabular-nums; }
-  .projects .container { padding: 0; }
-  .projects .proj-header, .proj-dots { padding: 0 20px; }
-  .proj-rail { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 20px; scroll-padding: 0 20px; scrollbar-width: none; overscroll-behavior-x: contain; }
-  .proj-rail::-webkit-scrollbar { display: none; }
-  .proj-rail .reveal { opacity: 1; transform: none; }
-  .proj-rail .proj-featured { flex: 0 0 min(306px, calc(100vw - 64px)); scroll-snap-align: start; }
-  .proj-rail .proj-featured > div:first-child { padding: 20px 20px 22px; }
-  .proj-rail .proj-mockups { height: 214px; }
-  .proj-rail .proj-title { font-size: 1.6875rem; line-height: 1.08; margin-bottom: 10px; }
-  .proj-rail .proj-desc { font-size: .875rem; line-height: 1.6; margin-bottom: 14px; }
-  .proj-rail .proj-tags { margin-bottom: 16px; gap: 6px; }
-  .proj-dots { display: flex; gap: 6px; margin-top: 22px; }
-  .proj-dots span { width: 26px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.2); transition: background .25s; }
-  .proj-dots span.on { background: var(--label-dark); }
-
-  /* about */
-  .about { padding: 48px 0; }
-  .about-h2 { font-size: 2.125rem; line-height: 1.08; margin-bottom: 18px; }
-  .about-h2 br { display: none; }
-  .about-body { font-size: .9375rem; line-height: 1.7; margin-bottom: 22px; }
-  .about-points { gap: 8px; }
-  .about-point { padding: 14px 16px; font-size: .875rem; }
-
-  /* experience */
-  .exp { padding: 0 0 48px; }
-  .exp-list { margin: 18px 0 0; }
-  .exp-item, .exp-item:last-child { padding: 18px 0; }
-  .exp-company { font-size: 1.5rem; }
-  .exp-role { font-size: .8125rem; margin: 4px 0 6px; }
-  .exp-desc { font-size: .875rem; line-height: 1.6; }
-  .exp-tags { margin-top: 10px; gap: 6px; }
-  .exp-tag { font-size: .75rem; }
-
-  /* in the works: inset card, three highlights */
-  .next { padding: 0 0 48px; }
-  .next .container { padding: 0 12px; }
-  .next .proj-featured { border-radius: 24px; padding: 28px 22px; gap: 18px; min-height: 0; }
-  .next .proj-title { font-size: 2.25rem; line-height: 1; }
-  .next-status { margin-bottom: 1rem; }
-  .next-tagline { font-size: 1.25rem; line-height: 1.3; margin-bottom: .8rem; }
-  .next .proj-desc { color: rgba(255,255,255,.64); font-size: .875rem; line-height: 1.65; margin-bottom: 1rem; }
-  .next-features { gap: 10px; }
-  .next-feature:nth-child(3), .next-feature:nth-child(4) { display: none; }
-  .next-feature p { font-size: .875rem; line-height: 1.5; }
-
-  /* services */
-  .services { padding: 0 0 48px; }
-  .services-grid { margin-top: 18px; }
-  .service-card, .service-card:hover { padding: 18px 0; grid-template-columns: 28px minmax(0, 1fr); column-gap: 16px; }
-  .service-n { grid-row: 1 / span 2; font-size: 1.375rem; }
-  .service-title { font-family: var(--font-body); font-size: 1rem; font-weight: 500; margin-bottom: 6px; }
-  .service-desc { font-size: .875rem; line-height: 1.6; }
-
-  /* process: vertical steps joined by a line */
-  .process { padding: 40px 0 44px; }
-  .process .section-h2 { font-size: 2rem; line-height: 1.08; }
-  .process-grid { margin-top: 18px; gap: 0; }
-  .process-grid > div { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 14px; padding-bottom: 22px; }
-  .process-grid > div:last-child { padding-bottom: 0; }
-  .process-grid > div:not(:last-child)::after { content: ''; position: absolute; left: 17px; top: 34px; bottom: 0; width: 1px; background: #D6D0C7; }
-  .step-num { grid-row: 1 / span 2; width: 34px; height: 34px; font-size: 1rem; }
-  .step-title { padding-top: 5px; margin-bottom: 5px; }
-  .step-desc { font-size: .875rem; line-height: 1.6; }
-
-  /* contact */
-  .contact { padding: 48px 0 28px; }
-  .contact-inner { text-align: left; display: flex; flex-direction: column; }
-  .contact-h2 { font-size: 3.25rem; line-height: 1; margin-bottom: 16px; }
-  .contact-sub { font-size: .9375rem; line-height: 1.6; margin-bottom: 16px; }
-  .contact-alt { order: 1; margin: 0; }
-  .contact-or { order: 2; display: flex; align-items: center; gap: 12px; margin: 22px 0 18px; font-size: .75rem; color: rgba(255,255,255,.55); }
-  .contact-or::before, .contact-or::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.12); }
-  .contact-form, .success-box { order: 3; margin-bottom: 0; gap: 12px; }
-  .contact-form .form-row { gap: 12px; }
-  .f-input, .f-area { font-size: 1rem; }
-  .f-area { min-height: 120px; }
-  .consent-row { font-size: .75rem; }
-  .btn-submit { padding: 0; }
-
-  /* footer */
-  .footer { padding: 28px 20px 32px; }
-  .footer-copy { width: 100%; }
-}
-
-/* ── DESKTOP (≥769px): two-column hero with a mockup collage, project grid,
-   heading-left / content-right sections ── */
-@media(min-width:769px){
-  /* one 1200px content column with the nav aligned to it */
-  .container { max-width: calc(1200px + 2 * var(--pad)); }
-  .hero, .about, .exp, .projects, .next, .services, .process, .contact { padding-left: 0; padding-right: 0; }
-  .nav { padding-left: max(var(--pad), calc((100% - 1200px) / 2)); padding-right: max(var(--pad), calc((100% - 1200px) / 2)); }
-  .section-h2, .about-h2 { font-size: clamp(2.25rem, 3.4vw, 2.875rem); line-height: 1.06; }
-
-  /* hero: copy left, collage of real project screens right */
-  .hero { min-height: 0; padding-top: clamp(140px, 13vw, 168px); padding-bottom: clamp(72px, 8vw, 104px); }
-  .hero-content { max-width: calc(1200px + 2 * var(--pad)); width: 100%; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); column-gap: clamp(32px, 4.5vw, 64px); align-items: center; }
-  .hero-content > * { grid-column: 1; }
-  .hero-chip { justify-self: start; font-size: .8125rem; padding: 7px 14px; margin-bottom: 26px; }
-  .hero-h1 { font-size: clamp(3.25rem, 5.8vw, 5.25rem); line-height: .98; margin-bottom: 26px; }
-  .hero-sub { font-size: 1.125rem; line-height: 1.65; margin-bottom: 32px; max-width: 500px; }
-  .hero-ctas .btn-primary, .hero-ctas .btn-ghost { height: 54px; padding: 0 28px; font-size: .9375rem; }
-  .hero-visual { display: block; grid-column: 2; grid-row: 1 / span 4; position: relative; height: clamp(380px, 35vw, 500px); }
-  .hero-visual::before { content: ''; position: absolute; inset: 5% 0 5% 7%; border-radius: 28px; background: var(--bg-dark); }
-  .hero-visual .hv { position: absolute; overflow: hidden; background: #2a2520; }
-  .hero-visual .hv img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-  .hero-visual .hv-web-a { top: 13%; right: 6%; width: 75%; aspect-ratio: 1200 / 753; border-radius: 10px; box-shadow: 0 24px 56px rgba(0,0,0,.5); }
-  .hero-visual .hv-web-b { bottom: 12%; right: 21%; width: 59%; aspect-ratio: 1200 / 753; border-radius: 10px; box-shadow: 0 24px 56px rgba(0,0,0,.55); }
-  .hero-visual .hv-phone { top: 24%; left: 0; width: 27%; aspect-ratio: 15 / 32; border-radius: 22px; border: 3px solid #0E0C0A; box-shadow: 0 28px 60px rgba(0,0,0,.45); }
-
-  /* projects: three cards side by side */
-  .projects { padding-top: clamp(72px, 7vw, 96px); padding-bottom: clamp(72px, 7vw, 96px); }
-  .proj-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-  .proj-rail .proj-featured > div:first-child { padding: 26px 26px 28px; }
-  .proj-rail .proj-mockups { height: 250px; }
-  .proj-rail .proj-title { font-size: 1.875rem; line-height: 1.08; margin-bottom: 12px; }
-  .proj-rail .proj-desc { font-size: .875rem; line-height: 1.65; margin-bottom: 16px; }
-  .proj-rail .proj-tags { margin-bottom: 18px; gap: 6px; }
-  .proj-rail .mock-phone { width: 96px !important; height: 204px !important; }
-  .proj-rail .mock-phone:first-child { transform: rotate(-5deg) translate(-24px, 8px) !important; }
-  .proj-rail .mock-phone:nth-child(2) { transform: rotate(4deg) translate(-24px, -10px) !important; }
-  .proj-rail .mock-web[style*="absolute"] { width: 206px !important; height: 129px !important; right: 6% !important; bottom: 9% !important; }
-  .proj-rail .mock-web:not([style*="absolute"]) { width: 200px !important; height: 125px !important; }
-  .proj-rail .mock-web:not([style*="absolute"]):first-child { transform: rotate(-4deg) translateY(-12px) !important; margin-right: -64px !important; }
-  .proj-rail .mock-web:not([style*="absolute"]):nth-child(2) { transform: rotate(4deg) translateY(14px) !important; }
-
-  /* heading left, content right */
-  .about-grid, .exp .container, .services .container, .process .container {
-    max-width: calc(1200px + 2 * var(--pad)); display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(32px, 4.5vw, 64px); align-items: start;
-  }
-  .about-grid > div { display: contents; }
-  .about-grid .label, .exp .label, .services .label, .process .label { grid-column: 1; grid-row: 1; }
-  .about-grid .about-h2, .exp .section-h2, .services .section-h2, .process .section-h2 { grid-column: 1; grid-row: 2 / span 2; margin: 0; }
-  .about-body, .exp-list, .services-grid, .process-grid { grid-column: 2; grid-row: 2; margin-top: 0; }
-  .about-points { grid-column: 2; grid-row: 3; }
-
-  .about { padding-top: clamp(80px, 8vw, 112px); padding-bottom: 56px; }
-  .about-h2 br { display: none; }
-  .about-body { font-size: 1.125rem; line-height: 1.7; margin-bottom: 26px; }
-  .about-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-  .about-point { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px; font-size: .875rem; line-height: 1.45; }
-
-  .exp { padding-top: 56px; padding-bottom: clamp(80px, 8vw, 112px); }
-  .exp-item, .exp-item:last-child { padding: 24px 0; }
-  .exp-company { font-size: 1.75rem; }
-  .exp-period { font-size: .75rem; }
-  .exp-role { font-size: .875rem; margin: 6px 0 8px; }
-  .exp-desc { max-width: none; }
-  .exp-tags { margin-top: 12px; gap: 6px; }
-
-  .next { padding-top: 0; padding-bottom: clamp(80px, 8vw, 112px); }
-  .next .proj-featured { border-radius: 28px; padding: clamp(36px, 4vw, 56px); gap: clamp(32px, 4.5vw, 64px); min-height: 0; }
-  .next .proj-title { font-size: 3.25rem; line-height: 1; }
-  .next-tagline { font-size: 1.5rem; }
-  .next .proj-desc { color: rgba(255,255,255,.64); max-width: 440px; }
-  .next-features { gap: 0; border-top: 1px solid rgba(255,255,255,.1); }
-  .next-feature { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
-  .next-feature p { font-size: .9375rem; }
-
-  .services { padding-top: 0; padding-bottom: clamp(80px, 8vw, 112px); }
-  .service-card, .service-card:hover { padding: 24px 0; grid-template-columns: 48px minmax(0, 1fr) minmax(0, 1.3fr); column-gap: 24px; align-items: baseline; }
-  .service-n { font-size: 1.625rem; }
-  .service-title { font-size: 1.625rem; font-weight: 400; margin: 0; }
-  .service-desc { font-size: .9375rem; line-height: 1.65; }
-
-  .process { padding-top: clamp(64px, 6.5vw, 88px); padding-bottom: clamp(72px, 7vw, 96px); }
-  .process-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-  .process-grid > div:not(:last-child)::after { content: ''; position: absolute; top: 20px; left: 52px; right: -16px; height: 1px; background: #D6D0C7; }
-  .step-num { width: 40px; height: 40px; font-size: 1.0625rem; margin-bottom: 20px; }
-  .step-title { font-size: 1.0625rem; }
-
-  /* contact: pitch + email left, form card right */
-  .contact { padding-top: clamp(80px, 8vw, 104px); padding-bottom: clamp(72px, 7vw, 96px); }
-  .contact-inner { max-width: calc(1200px + 2 * var(--pad)); text-align: left; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(32px, 4.5vw, 64px); align-content: start; }
-  .contact-inner > * { grid-column: 1; }
-  .contact-h2 { font-size: clamp(3.5rem, 6vw, 5.5rem); line-height: .95; margin-bottom: 18px; }
-  .contact-sub { font-size: 1.0625rem; line-height: 1.6; margin-bottom: 26px; max-width: 380px; }
-  .contact-alt { max-width: 360px; margin: 0; }
-  .contact-alt a { height: 56px; padding: 0 20px; }
-  .contact-form, .success-box { grid-column: 2; grid-row: 1 / span 5; margin: 0; padding: clamp(28px, 3vw, 36px); border-radius: 24px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); gap: 16px; }
-  .contact-form .form-row { gap: 16px; }
-  .f-area { min-height: 140px; }
-  .btn-submit { width: auto; align-self: flex-start; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 </style>
 </head>
 <body>
 
-<a href="#home" class="skip-link" data-i18n="a11y.skip">Vai al contenuto principale</a>
+<a href="#main" class="skip-link" data-i18n="a11y.skip">Vai al contenuto principale</a>
 
-<nav class="nav" id="nav">
-  <a href="#" class="nav-logo">madebypaolo.it</a>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#about" data-i18n="nav.about">Chi sono</a></li>
-    <li><a href="#experience" data-i18n="nav.experience">Esperienza</a></li>
-    <li><a href="#projects" data-i18n="nav.projects">Progetti</a></li>
-    <li><a href="#next" data-i18n="nav.next">In lavorazione</a></li>
-    <li><a href="#services" data-i18n="nav.services">Servizi</a></li>
-    <li class="nav-cta-wrap">
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="nav-logo">Made by <em>Paolo</em></a>
+    <nav aria-label="Sezioni">
+      <ul class="nav-links">
+        <li><a href="#lavori" data-i18n="nav.work">Lavori</a></li>
+        <li><a href="#lodgeos" data-i18n="nav.lodgeos">LodgeOS</a></li>
+        <li><a href="#processo" data-i18n="nav.process">Processo</a></li>
+        <li><a href="#esperienza" data-i18n="nav.experience">Esperienza</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
       <div class="lang-toggle" role="group" aria-label="Language">
         <button class="lang-btn active" data-lang="it" aria-label="Italiano">IT</button>
         <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
       </div>
-      <a href="#contact"><button class="btn-primary btn-sm" data-i18n="nav.cta">Contattami</button></a>
-      <a href="mailto:studio@madebypaolo.it" class="nav-mail">studio@madebypaolo.it</a>
-    </li>
-  </ul>
-  <div class="nav-right">
-    <a href="#contact" class="btn-primary btn-sm nav-cta-mobile" data-i18n="nav.cta">Contattami</a>
-    <span class="lang-mobile-only">
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button class="lang-btn active" data-lang="it" aria-label="Italiano">IT</button>
-        <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
-      </div>
-    </span>
-    <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
-      <svg id="burger-icon" width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </button>
+      <a href="#contatti" class="btn btn-primary btn-sm" data-i18n="nav.cta">Parliamone</a>
+    </div>
   </div>
-</nav>
+</header>
 
 <main id="main">
-<section id="home" class="hero">
-  <div class="hero-orb"></div>
-  <div class="hero-ring"></div>
-  <div class="hero-content container">
-    <span class="hero-chip reveal"><span class="hero-chip-dot"></span><span data-i18n="hero.chip">Sviluppatore web &amp; mobile freelance</span></span>
-    <h1 class="hero-h1 reveal d1">
-      <span data-i18n="hero.h1a">Sviluppo siti web</span><br>
-      <span data-i18n="hero.h1b">e app mobile</span><br>
-      <em data-i18n="hero.h1em">moderni.</em>
-    </h1>
-    <p class="hero-sub reveal d2" data-i18n="hero.sub">Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.</p>
-    <div class="hero-ctas reveal d3">
-      <a href="#contact"><button class="btn-primary" data-i18n="hero.cta1">Contattami →</button></a>
-      <a href="#projects"><button class="btn-ghost" data-i18n="hero.cta2">Guarda i progetti</button></a>
-    </div>
-    <div class="hero-visual" aria-hidden="true">
-      <picture class="hv hv-web-a">
-        <source srcset="images/matteoverdi_website.webp" type="image/webp">
-        <img src="images/matteoverdi_website.png" alt="" width="1200" height="753" loading="lazy" decoding="async">
-      </picture>
-      <picture class="hv hv-web-b">
-        <source srcset="images/robe2000_website_1.webp" type="image/webp">
-        <img src="images/robe2000_website_1.png" alt="" width="1200" height="753" loading="lazy" decoding="async">
-      </picture>
-      <picture class="hv hv-phone">
-        <source srcset="images/nikecountryretreat_mobile_1.webp" type="image/webp">
-        <img src="images/nikecountryretreat_mobile_1.png" alt="" width="480" height="1044" loading="lazy" decoding="async">
-      </picture>
-    </div>
-  </div>
-</section>
+<div class="scrolly" id="top">
 
-<section id="about" class="about">
-  <div class="container about-grid">
-    <div>
-      <span class="label reveal" data-i18n="about.label">Chi sono</span>
-      <h2 class="about-h2 reveal d1">
-        <span data-i18n="about.h2a">Costruisco prodotti</span><br>
-        <span data-i18n="about.h2b">digitali che lavorano per te.</span>
-      </h2>
-      <p class="about-body reveal d2" data-i18n="about.body">Sono Paolo Ferrari, sviluppatore freelance specializzato in siti web e app mobile. Lavoro direttamente con le aziende, senza intermediari, per creare prodotti digitali veloci, curati nei dettagli e orientati ai risultati.</p>
-      <div class="about-points reveal d3" id="about-points"></div>
+  <div class="stage" id="stage">
+    <div class="glow" aria-hidden="true"></div>
+    <canvas id="scene" role="img" data-i18n-aria="stage.aria" aria-label="Scena 3D: telefono, browser e tablet con i progetti di Paolo, che cambiano a ogni sezione"></canvas>
+    <div class="fallback" aria-hidden="true">
+      <img src="images/nikecountryretreat_mobile_1.webp" alt="" width="480" height="1044">
     </div>
-  </div>
-</section>
-
-<section id="experience" class="exp">
-  <div class="container">
-    <span class="label reveal" data-i18n="experience.label">Esperienza</span>
-    <h2 class="section-h2 reveal d1" data-i18n="experience.h2">Dove ho lavorato</h2>
-    <div class="exp-list" id="exp-list"></div>
-  </div>
-</section>
-
-<section id="projects" class="projects">
-  <div class="container">
-    <div class="proj-header">
-      <div>
-        <span class="label reveal" data-i18n="projects.label">Progetti</span>
-        <h2 class="section-h2 reveal d1" data-i18n="projects.h2">Lavori selezionati</h2>
-      </div>
-      <span class="proj-count" id="proj-count" aria-hidden="true">01 / 03</span>
+    <div class="dots hide-sm" aria-hidden="true">
+      <span class="dot" data-i="1">01 Nike</span>
+      <span class="dot" data-i="2">02 RO.BE 2000</span>
+      <span class="dot" data-i="3">03 Matteo Verdi</span>
+      <span class="dot" data-i="4">04 LodgeOS</span>
+      <span class="dot" data-i="5" data-i18n="stage.dot5">05 Processo</span>
     </div>
-    <div class="proj-rail" id="proj-rail">
-    <div class="proj-card proj-featured reveal d2">
-      <div>
-        <h3 class="proj-title">Nike Country <br>Retreat</h3>
-        <p class="proj-desc" data-i18n="projects.p1desc">Prodotto digitale sviluppato end-to-end: app iOS, app Android e sito web. Focus su user experience raffinata e performance elevata in ogni dettaglio.</p>
-        <div class="proj-tags">
-          <span class="tag tag-accent">iOS App</span>
-          <span class="tag tag-accent">Android App</span>
-          <span class="tag tag-white">Web</span>
-          <span class="tag tag-white">UX Design</span>
-        </div>
-        <div class="proj-btns">
-          <a href="https://www.nikecountryretreat.com/" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
-            <span data-i18n="projects.openSite">Apri sito</span>
-          </a>
-          <a href="https://apps.apple.com/it/app/nike-country-retreat/id6748913437" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            App iOS
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.nikecountryhouse.app" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.4.07 2.39.74 3.22.8 1.23-.24 2.41-.93 3.72-.84 1.58.14 2.76.82 3.54 2.05-3.24 1.94-2.73 5.9.52 7.05-.63 1.62-1.39 3.12-3 3.82zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-            App Android
-          </a>
-        </div>
-      </div>
-      <div class="proj-mockups">
-        <div class="mock-phone" style="width:118px;height:238px;transform:translateX(-55px) rotate(-5deg) translateY(14px);z-index:1;">
-          <picture>
-            <source srcset="images/nikecountryretreat_mobile_1.webp" type="image/webp">
-            <img src="images/nikecountryretreat_mobile_1.png" alt="Nike Country Retreat — schermata app mobile" width="480" height="1044" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="mock-phone" style="width:118px;height:238px;transform:translateX(-55px) rotate(4deg) translateY(-10px);z-index:2;">
-          <picture>
-            <source srcset="images/nikecountryretreat_mobile_2.webp" type="image/webp">
-            <img src="images/nikecountryretreat_mobile_2.png" alt="Nike Country Retreat — schermata app mobile" width="480" height="1044" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="mock-web" style="width:240px;height:150px;position:absolute;bottom:0;right:0;z-index:3;box-shadow:0 24px 56px rgba(0,0,0,.55);">
-          <picture>
-            <source srcset="images/nikecountryretreat_website_v2.webp" type="image/webp">
-            <img src="images/nikecountryretreat_website_v2.png" alt="Nike Country Retreat — sito web" width="960" height="602" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </div>
-    </div>
-    <div class="proj-card proj-featured reveal d3">
-      <div>
-        <h3 class="proj-title">RO.BE 2000</h3>
-        <p class="proj-desc" data-i18n="projects.p2desc">Redesign completo del sito per RO.BE 2000, azienda specializzata nello stampaggio di elastomeri per il settore food contact. Identità visiva industriale, tipografia d'impatto e architettura dei contenuti bilingue.</p>
-        <div class="proj-tags">
-          <span class="tag tag-accent">Web Design</span>
-          <span class="tag tag-accent">UX Design</span>
-          <span class="tag tag-white">Responsive</span>
-        </div>
-        <div class="proj-btns">
-          <a href="https://robe2000.it/" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
-            <span data-i18n="projects.openSite">Apri sito</span>
-          </a>
-        </div>
-      </div>
-      <div class="proj-mockups">
-        <div class="mock-web" style="width:262px;height:164px;transform:rotate(-4deg) translate(-12px,-12px);z-index:1;">
-          <picture>
-            <source srcset="images/robe2000_website_2.webp" type="image/webp">
-            <img src="images/robe2000_website_2.png" alt="RO.BE 2000 — sezione food contact del sito" width="1200" height="753" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="mock-web" style="width:284px;height:178px;transform:rotate(4deg) translate(12px,16px);z-index:2;">
-          <picture>
-            <source srcset="images/robe2000_website_1.webp" type="image/webp">
-            <img src="images/robe2000_website_1.png" alt="RO.BE 2000 — homepage del sito redesign" width="1200" height="753" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </div>
-    </div>
-    <div class="proj-card proj-featured reveal d4">
-      <div>
-        <h3 class="proj-title">Matteo Verdi <br>Bertoldi</h3>
-        <p class="proj-desc" data-i18n="projects.p3desc">Sito personale per l'Avv. Matteo Verdi Bertoldi, cassazionista specializzato in diritto civile e societario. Design sobrio e autorevole, layout dedicato per smartphone, contenuti bilingue IT / EN e SEO tecnica curata in ogni dettaglio.</p>
-        <div class="proj-tags">
-          <span class="tag tag-accent">Web Design</span>
-          <span class="tag tag-accent">UX Design</span>
-          <span class="tag tag-white">Responsive</span>
-          <span class="tag tag-white">SEO</span>
-        </div>
-        <div class="proj-btns">
-          <a href="https://www.matteoverdi.com/" target="_blank" rel="noopener noreferrer" class="btn-outline-light">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
-            <span data-i18n="projects.openSite">Apri sito</span>
-          </a>
-        </div>
-      </div>
-      <div class="proj-mockups">
-        <div class="mock-phone" style="width:118px;height:238px;transform:translateX(-55px) rotate(-5deg) translateY(14px);z-index:1;">
-          <picture>
-            <source srcset="images/matteoverdi_mobile_1.webp" type="image/webp">
-            <img src="images/matteoverdi_mobile_1.png" alt="Matteo Verdi Bertoldi — homepage su smartphone" width="480" height="1039" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="mock-phone" style="width:118px;height:238px;transform:translateX(-55px) rotate(4deg) translateY(-10px);z-index:2;">
-          <picture>
-            <source srcset="images/matteoverdi_mobile_2.webp" type="image/webp">
-            <img src="images/matteoverdi_mobile_2.png" alt="Matteo Verdi Bertoldi — aree di attività su smartphone" width="480" height="1039" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="mock-web" style="width:240px;height:150px;position:absolute;bottom:0;right:0;z-index:3;box-shadow:0 24px 56px rgba(0,0,0,.55);">
-          <picture>
-            <source srcset="images/matteoverdi_website.webp" type="image/webp">
-            <img src="images/matteoverdi_website.png" alt="Matteo Verdi Bertoldi — homepage del sito" width="1200" height="753" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="proj-dots" id="proj-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
-  </div>
-</section>
-
-<section id="next" class="next">
-  <div class="container">
-    <div class="proj-header">
-      <div>
-        <span class="label reveal" data-i18n="next.label">In lavorazione</span>
-        <h2 class="section-h2 reveal d1" data-i18n="next.h2">Il prossimo progetto</h2>
-      </div>
-    </div>
-    <div class="proj-card proj-featured reveal d2">
-      <div>
-        <span class="next-status">
-          <span class="pulse"></span>
-          <span data-i18n="next.status">In sviluppo</span>
-        </span>
-        <h3 class="proj-title">LodgeOS</h3>
-        <p class="next-tagline" data-i18n="next.tagline">Le camere e il ristorante, in un solo sistema.</p>
-        <p class="proj-desc" data-i18n="next.desc">Il gestionale per agriturismi, B&amp;B e piccoli hotel con ristorante: prenoti una camera in mezza pensione e le cene compaiono da sole in sala, giorno per giorno.</p>
-        <div class="proj-btns">
-          <a href="https://lodgeos.it/" target="_blank" rel="noopener" class="btn-outline-light">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
-            <span data-i18n="next.visit">Visita lodgeos.it</span>
-          </a>
-        </div>
-      </div>
-      <ul class="next-features">
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f1">Trattamenti collegati alla sala: B&amp;B, mezza pensione e pensione completa creano da soli i coperti.</p></li>
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f2">Calendario delle camere con arrivi, partenze e pulizie del giorno.</p></li>
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f3">Servizio in sala su tablet, con pianta della sala e timeline della serata.</p></li>
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f4">Eventi con disposizione propria, menu con i 14 allergeni UE e prenotazioni online.</p></li>
-        <li class="next-feature"><span class="nf-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><p data-i18n="next.f5">Più strutture gestite, dati sempre separati.</p></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="services" class="services">
-  <div class="container">
-    <span class="label reveal" data-i18n="services.label">Cosa faccio</span>
-    <h2 class="section-h2 reveal d1" data-i18n="services.h2">Servizi</h2>
-    <div class="services-grid" id="services-grid"></div>
-  </div>
-</section>
-
-<section id="process" class="process">
-  <div class="container">
-    <span class="label reveal" data-i18n="process.label">Come lavoro</span>
-    <h2 class="section-h2 reveal d1">
-      <span data-i18n="process.h2a">Processo semplice,</span><br>
-      <span data-i18n="process.h2b">risultati concreti.</span>
-    </h2>
-    <div class="process-grid" id="process-grid"></div>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <div class="container contact-inner">
-    <span class="label reveal" data-i18n="contact.label">Contatti</span>
-    <h2 class="contact-h2 reveal d1">
-      <span data-i18n="contact.h2">Parliamone</span><em data-i18n="contact.h2em">.</em>
-    </h2>
-    <p class="contact-sub reveal d2" data-i18n="contact.sub">Hai un progetto in mente? Scrivimi senza impegno. Rispondo entro 24 ore.</p>
-    <form class="contact-form reveal d3" id="contact-form" novalidate aria-label="Modulo di contatto">
-      <div class="form-row">
-        <div>
-          <label for="cf-name" class="sr-only" data-i18n="contact.nameLabel">Nome</label>
-          <input class="f-input" id="cf-name" name="name" type="text" autocomplete="name" required maxlength="80" data-i18n-ph="contact.namePh" placeholder="Il tuo nome">
-        </div>
-        <div>
-          <label for="cf-email" class="sr-only" data-i18n="contact.emailLabel">Email</label>
-          <input class="f-input" id="cf-email" name="email" type="email" autocomplete="email" required maxlength="120" data-i18n-ph="contact.emailPh" placeholder="La tua email">
-        </div>
-      </div>
-      <label for="cf-msg" class="sr-only" data-i18n="contact.msgLabel">Messaggio</label>
-      <textarea class="f-area" id="cf-msg" name="msg" required maxlength="3000" data-i18n-ph="contact.msgPh" placeholder="Raccontami del tuo progetto..."></textarea>
-      <div class="consent-row">
-        <input type="checkbox" id="cf-consent" name="consent" required>
-        <label for="cf-consent">
-          <span data-i18n="contact.consent">Ho letto la</span>
-          <a href="/privacy.html" target="_blank" rel="noopener" data-i18n="contact.privacyLink">Privacy Policy</a>
-          <span data-i18n="contact.consentEnd">e acconsento al trattamento dei miei dati.</span>
-        </label>
-      </div>
-      <!-- Honeypot anti-spam field (hidden from users) -->
-      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
-      <button type="submit" class="btn-submit" id="submit-btn" data-i18n="contact.send">Invia messaggio →</button>
-    </form>
-    <div class="success-box reveal" id="success-box" style="display:none;">
-      <div class="success-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
-      </div>
-      <h3 class="success-title" data-i18n="contact.successTitle">Messaggio inviato!</h3>
-      <p class="success-sub" data-i18n="contact.successSub">Ti rispondo al più presto. A presto, Paolo.</p>
-    </div>
-    <p class="contact-or" data-i18n="contact.or">oppure compila il modulo</p>
-    <p class="contact-alt reveal d4">
-      <span data-i18n="contact.alt">oppure scrivi direttamente a</span>
-      <a href="mailto:studio@madebypaolo.it">studio@madebypaolo.it</a>
+    <p class="hint hide-sm" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+      <span data-i18n="stage.hint">Tocca o trascina un dispositivo</span>
     </p>
+  </div>
+
+  <section class="step" data-step="0" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="copy plain">
+        <p class="chip"><span class="dot-accent"></span><span data-i18n="hero.chip">Sviluppatore web &amp; mobile freelance</span></p>
+        <h1 id="hero-title" class="h1"><span data-i18n="hero.h1a">Ogni pixel,</span><br><em data-i18n="hero.h1em">fatto a mano.</em></h1>
+        <p class="soft hero-sub" data-i18n="hero.sub">Siti web e app mobile per ristoranti, B&amp;B e aziende locali. Prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
+          <a href="#contatti" class="btn btn-primary" data-i18n="hero.cta1">Parliamone →</a>
+          <a href="#lavori" class="btn btn-ghost" data-i18n="hero.cta2">Guarda i lavori</a>
+        </div>
+        <div class="cue hide-sm"><span class="cue-track"></span><span data-i18n="hero.cue">Scorri per accendere lo schermo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="1" id="lavori" aria-labelledby="s1-title">
+    <div class="wrap">
+      <div class="copy reveal">
+        <p class="label">01 · Nike Country Retreat</p>
+        <h2 id="s1-title" class="h2"><span data-i18n="nike.h2a">Tre schermi,</span> <em data-i18n="nike.h2em">un’unica esperienza.</em></h2>
+        <p class="modes">
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span data-i18n="nike.m1">App iOS</span></span>
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><circle cx="12" cy="5.5" r=".6"/></svg><span data-i18n="nike.m2">App Android</span></span>
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg><span data-i18n="nike.m3">Sito web</span></span>
+        </p>
+        <p class="desc" data-i18n="nike.desc">Prodotto sviluppato end-to-end: app iOS, app Android e sito web. Esperienza curata e prestazioni alte in ogni dettaglio, su ogni schermo.</p>
+        <div class="links">
+          <a href="https://apps.apple.com/it/app/nike-country-retreat/id6748913437" target="_blank" rel="noopener">App Store ↗</a>
+          <a href="https://play.google.com/store/apps/details?id=com.nikecountryhouse.app" target="_blank" rel="noopener">Google Play ↗</a>
+          <a href="https://www.nikecountryretreat.com/" target="_blank" rel="noopener">nikecountryretreat.com ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="2" aria-labelledby="s2-title">
+    <div class="wrap">
+      <div class="copy reveal">
+        <p class="label">02 · RO.BE 2000</p>
+        <h2 id="s2-title" class="h2"><span data-i18n="robe.h2a">Industriale,</span> <em data-i18n="robe.h2em">ma su misura.</em></h2>
+        <p class="modes">
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg><span data-i18n="robe.m1">Sito web</span></span>
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span data-i18n="robe.m2">Versione mobile</span></span>
+          <span class="mode">IT · EN</span>
+        </p>
+        <p class="desc" data-i18n="robe.desc">Redesign del sito di un’azienda specializzata nello stampaggio di elastomeri per il settore food contact. Identità visiva industriale, tipografia d’impatto e contenuti bilingue.</p>
+        <div class="links"><a href="https://robe2000.it/" target="_blank" rel="noopener">robe2000.it ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="3" aria-labelledby="s3-title">
+    <div class="wrap">
+      <div class="copy reveal">
+        <p class="label">03 · Matteo Verdi Bertoldi</p>
+        <h2 id="s3-title" class="h2"><span data-i18n="mv.h2a">Autorevole,</span> <em data-i18n="mv.h2em">anche dal telefono.</em></h2>
+        <p class="modes">
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg><span data-i18n="mv.m1">Desktop</span></span>
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span data-i18n="mv.m2">Layout mobile dedicato</span></span>
+          <span class="mode" data-i18n="mv.m3">SEO tecnica</span>
+        </p>
+        <p class="desc" data-i18n="mv.desc">Sito personale per un avvocato cassazionista specializzato in diritto civile e societario. Design sobrio e autorevole, contenuti bilingue IT / EN e un layout pensato apposta per smartphone.</p>
+        <div class="links"><a href="https://www.matteoverdi.com/" target="_blank" rel="noopener">matteoverdi.com ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="4" id="lodgeos" aria-labelledby="s4-title">
+    <div class="wrap">
+      <div class="copy reveal">
+        <p class="label"><span data-i18n="lodge.label">04 · In lavorazione</span> <span class="status"><span class="pulse"></span><span data-i18n="lodge.status">In sviluppo</span></span></p>
+        <h2 id="s4-title" class="h2"><span data-i18n="lodge.h2a">Camere e ristorante,</span> <em data-i18n="lodge.h2em">in un solo sistema.</em></h2>
+        <p class="modes">
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/></svg><span data-i18n="lodge.m1">Web app · tablet</span></span>
+          <span class="mode"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span data-i18n="lodge.m2">Telefono in sala</span></span>
+          <span class="mode" data-i18n="lodge.m3">Widget prenotazioni</span>
+        </p>
+        <p class="desc" data-i18n="lodge.desc">LodgeOS è il gestionale per agriturismi, B&amp;B e piccoli hotel con ristorante: prenoti una camera in mezza pensione e le cene compaiono da sole in sala, giorno per giorno.</p>
+        <ul class="checks hide-sm">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E07A45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="lodge.f1">B&amp;B, mezza pensione e pensione completa creano da soli i coperti.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E07A45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="lodge.f2">Servizio in sala su tablet, con pianta e timeline della serata.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E07A45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="lodge.f3">Menu con i 14 allergeni UE e prenotazioni online.</span></li>
+        </ul>
+        <a href="https://lodgeos.it/" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:26px" data-i18n="lodge.visit">Visita lodgeos.it ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-step="5" id="processo" aria-labelledby="s5-title">
+    <div class="wrap">
+      <div class="copy reveal">
+        <p class="label" data-i18n="process.label">05 · Come lavoro</p>
+        <h2 id="s5-title" class="h2"><span data-i18n="process.h2a">Processo semplice,</span> <em data-i18n="process.h2em">risultati concreti.</em></h2>
+        <ol class="rows">
+          <li class="proc"><span class="proc-n">01</span><div><h3 data-i18n="process.s1t">Analisi</h3><p data-i18n="process.s1d">Capisco il tuo business e definiamo insieme obiettivi chiari. Zero tecnicismi, tutto trasparente.</p></div></li>
+          <li class="proc"><span class="proc-n">02</span><div><h3 data-i18n="process.s2t">Sviluppo</h3><p data-i18n="process.s2d">Realizzo il prodotto in modo rapido e ti aggiorno a ogni fase, senza sorprese.</p></div></li>
+          <li class="proc"><span class="proc-n">03</span><div><h3 data-i18n="process.s3t">Consegna &amp; supporto</h3><p data-i18n="process.s3d">Lancio, assistenza tecnica e ottimizzazione continua. Non sparisco dopo la consegna.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<section class="section" id="esperienza" aria-labelledby="exp-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="label" data-i18n="experience.label">Esperienza</p>
+      <h2 id="exp-title" class="h2"><span data-i18n="experience.h2a">Dove ho</span> <em data-i18n="experience.h2em">lavorato.</em></h2>
+      <p class="intro" data-i18n="experience.intro">Sono Paolo Ferrari. Lavoro direttamente con le aziende, senza agenzie di mezzo: esecuzione rapida, comunicazione trasparente, attenzione maniacale ai dettagli.</p>
+    </div>
+    <div class="reveal">
+      <article class="exp-item">
+        <div class="exp-head"><h3>Space Mushrooms</h3><span class="exp-period current" data-i18n="experience.smPeriod">Mar 2025 – oggi</span></div>
+        <p class="exp-role" data-i18n="experience.role">Sviluppatore iOS</p>
+        <p class="exp-desc" data-i18n="experience.smDesc">Sviluppo e mantengo diverse app iOS end-to-end, dai moduli di monetizzazione ai prodotti completi, modernizzando codice legacy e realizzando nuove funzionalità.</p>
+      </article>
+      <article class="exp-item">
+        <div class="exp-head"><h3>Accenture</h3><span class="exp-period" data-i18n="experience.accPeriod">Set 2022 – Feb 2025</span></div>
+        <p class="exp-role" data-i18n="experience.role">Sviluppatore iOS</p>
+        <p class="exp-desc" data-i18n="experience.accDesc">App iOS per grandi marchi, su più prodotti in parallelo, a stretto contatto con design e team di prodotto.</p>
+        <p class="tags"><span class="mode" data-i18n="experience.tag1">Italia.it · Ministero del Turismo</span><span class="mode">Moncler</span><span class="mode">Prada</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="stats" aria-labelledby="stats-title">
+  <h2 id="stats-title" class="sr-only" data-i18n="stats.title">In numeri</h2>
+  <ul class="wrap stats-grid">
+    <li><p class="stat-n">4</p><p class="stat-l" data-i18n="stats.s1">anni di sviluppo iOS</p></li>
+    <li><p class="stat-n">0</p><p class="stat-l" data-i18n="stats.s2">agenzie di mezzo</p></li>
+    <li><p class="stat-n">24h</p><p class="stat-l" data-i18n="stats.s3">per una risposta</p></li>
+    <li><p class="stat-n">IT·EN</p><p class="stat-l" data-i18n="stats.s4">lingue in cui lavoro</p></li>
+  </ul>
+</section>
+
+<section class="section" id="contatti" aria-labelledby="ct-title">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="label" data-i18n="contact.label">Contatti</p>
+      <h2 id="ct-title" class="contact-h2"><span data-i18n="contact.h2">Tocca a te</span><em>.</em></h2>
+      <p class="intro" data-i18n="contact.sub">Hai un progetto in mente? Scrivimi senza impegno, rispondo entro 24 ore.</p>
+      <p class="contact-alt"><span data-i18n="contact.alt">oppure scrivi a</span><br><a href="mailto:studio@madebypaolo.it">studio@madebypaolo.it</a></p>
+    </div>
+    <div class="card reveal">
+      <form class="form" id="contact-form" novalidate data-i18n-aria="contact.formAria" aria-label="Modulo di contatto">
+        <div class="form-row">
+          <label class="field" for="cf-name"><span data-i18n="contact.nameLabel">Nome</span>
+            <input class="f-input" id="cf-name" name="name" type="text" autocomplete="name" required maxlength="80" data-i18n-ph="contact.namePh" placeholder="Il tuo nome">
+          </label>
+          <label class="field" for="cf-email"><span data-i18n="contact.emailLabel">Email</span>
+            <input class="f-input" id="cf-email" name="email" type="email" autocomplete="email" required maxlength="120" data-i18n-ph="contact.emailPh" placeholder="La tua email">
+          </label>
+        </div>
+        <label class="field" for="cf-msg"><span data-i18n="contact.msgLabel">Messaggio</span>
+          <textarea class="f-area" id="cf-msg" name="msg" required maxlength="3000" data-i18n-ph="contact.msgPh" placeholder="Raccontami del tuo progetto…"></textarea>
+        </label>
+        <div class="consent-row">
+          <input type="checkbox" id="cf-consent" name="consent" required>
+          <label for="cf-consent">
+            <span data-i18n="contact.consent">Ho letto la</span>
+            <a href="/privacy.html" target="_blank" rel="noopener" data-i18n="contact.privacyLink">Privacy Policy</a>
+            <span data-i18n="contact.consentEnd">e acconsento al trattamento dei miei dati per essere ricontattato.</span>
+          </label>
+        </div>
+        <!-- Honeypot anti-spam field (hidden from users) -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+        <button type="submit" class="btn btn-primary btn-submit" id="submit-btn" data-i18n="contact.send">Invia messaggio →</button>
+      </form>
+      <div class="success" id="success-box" role="status">
+        <div class="success-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3 data-i18n="contact.successTitle">Messaggio inviato!</h3>
+        <p data-i18n="contact.successSub">Ti rispondo al più presto. A presto, Paolo.</p>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer class="footer">
-  <span class="footer-logo">madebypaolo.it</span>
-  <span class="footer-links">
-    <a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
-    <a href="/imprint.html" data-i18n="footer.imprint">Note legali</a>
-  </span>
-  <span class="footer-copy" id="footer-copy"></span>
+  <div class="wrap footer-inner">
+    <span id="footer-copy"></span>
+    <span class="footer-links">
+      <a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+      <a href="/imprint.html" data-i18n="footer.imprint">Note legali</a>
+    </span>
+  </div>
 </footer>
 
 <script>
@@ -1139,78 +566,76 @@ const COPY = {
       description: 'Sviluppatore freelance: realizzo siti web, app mobile ed esperienze digitali moderne.',
     },
     a11y: { skip: 'Vai al contenuto principale' },
-    nav: { about:'Chi sono', experience:'Esperienza', projects:'Progetti', next:'In lavorazione', services:'Servizi', cta:'Contattami' },
+    nav: { work: 'Lavori', lodgeos: 'LodgeOS', process: 'Processo', experience: 'Esperienza', cta: 'Parliamone' },
+    stage: {
+      aria: 'Scena 3D: telefono, browser e tablet con i progetti di Paolo, che cambiano a ogni sezione',
+      hint: 'Tocca o trascina un dispositivo',
+      dot5: '05 Processo',
+    },
     hero: {
-      h1a: 'Sviluppo siti web', h1b: 'e app mobile', h1em: 'moderni.',
-      sub: 'Lavoro con ristoranti, B&B e aziende locali per creare prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.',
-      cta1: 'Contattami →', cta2: 'Guarda i progetti',
       chip: 'Sviluppatore web & mobile freelance',
+      h1a: 'Ogni pixel,', h1em: 'fatto a mano.',
+      sub: 'Siti web e app mobile per ristoranti, B&B e aziende locali. Prodotti digitali che portano risultati concreti: più prenotazioni, più contatti, più clienti.',
+      cta1: 'Parliamone →', cta2: 'Guarda i lavori',
+      cue: 'Scorri per accendere lo schermo',
     },
-    about: {
-      label: 'Chi sono',
-      h2a: 'Costruisco prodotti', h2b: 'digitali che lavorano per te.',
-      body: 'Sono Paolo Ferrari, sviluppatore freelance specializzato in siti web e app mobile. Lavoro direttamente con le aziende, senza intermediari, per creare prodotti digitali veloci, curati nei dettagli e orientati ai risultati.',
-      points: ['Collaborazione diretta, senza agenzia di mezzo','Esecuzione rapida e comunicazione trasparente','Attenzione maniacale a ogni dettaglio'],
+    nike: {
+      h2a: 'Tre schermi,', h2em: 'un’unica esperienza.',
+      m1: 'App iOS', m2: 'App Android', m3: 'Sito web',
+      desc: 'Prodotto sviluppato end-to-end: app iOS, app Android e sito web. Esperienza curata e prestazioni alte in ogni dettaglio, su ogni schermo.',
     },
-    experience: {
-      label: 'Esperienza', h2: 'Dove ho lavorato',
-      items: [
-        { period: 'Mar 2025 – Oggi', company: 'Space Mushrooms', role: 'Sviluppatore iOS', current: true,
-          desc: 'Sviluppo e mantengo diverse app iOS end-to-end, da moduli di monetizzazione a prodotti completi, modernizzando codice legacy e realizzando nuove funzionalità.' },
-        { period: 'Set 2022 – Feb 2025', company: 'Accenture', role: 'Sviluppatore iOS',
-          desc: 'Ho realizzato app iOS per grandi marchi, lavorando su più prodotti in parallelo a stretto contatto con design e team di prodotto.',
-          tags: ['Italia.it · Ministero del Turismo', 'Moncler', 'Prada'] },
-      ],
+    robe: {
+      h2a: 'Industriale,', h2em: 'ma su misura.',
+      m1: 'Sito web', m2: 'Versione mobile',
+      desc: 'Redesign del sito di un’azienda specializzata nello stampaggio di elastomeri per il settore food contact. Identità visiva industriale, tipografia d’impatto e contenuti bilingue.',
     },
-    projects: {
-      label: 'Progetti', h2: 'Lavori selezionati',
-      p1desc: 'Prodotto digitale sviluppato end-to-end: app iOS, app Android e sito web. Focus su user experience raffinata e performance elevata in ogni dettaglio.',
-      p2desc: 'Redesign completo del sito per RO.BE 2000, azienda specializzata nello stampaggio di elastomeri per il settore food contact. Identità visiva industriale, tipografia d\'impatto e architettura dei contenuti bilingue.',
-      p3desc: 'Sito personale per l\'Avv. Matteo Verdi Bertoldi, cassazionista specializzato in diritto civile e societario. Design sobrio e autorevole, layout dedicato per smartphone, contenuti bilingue IT / EN e SEO tecnica curata in ogni dettaglio.',
-      openSite: 'Apri sito',
+    mv: {
+      h2a: 'Autorevole,', h2em: 'anche dal telefono.',
+      m1: 'Desktop', m2: 'Layout mobile dedicato', m3: 'SEO tecnica',
+      desc: 'Sito personale per un avvocato cassazionista specializzato in diritto civile e societario. Design sobrio e autorevole, contenuti bilingue IT / EN e un layout pensato apposta per smartphone.',
     },
-    next: {
-      label: 'In lavorazione', h2: 'Il prossimo progetto',
-      status: 'In sviluppo',
-      tagline: 'Le camere e il ristorante, in un solo sistema.',
-      desc: 'Il gestionale per agriturismi, B&B e piccoli hotel con ristorante: prenoti una camera in mezza pensione e le cene compaiono da sole in sala, giorno per giorno.',
-      visit: 'Visita lodgeos.it',
-      f1: 'Trattamenti collegati alla sala: B&B, mezza pensione e pensione completa creano da soli i coperti.',
-      f2: 'Calendario delle camere con arrivi, partenze e pulizie del giorno.',
-      f3: 'Servizio in sala su tablet, con pianta della sala e timeline della serata.',
-      f4: 'Eventi con disposizione propria, menu con i 14 allergeni UE e prenotazioni online.',
-      f5: 'Più strutture gestite, dati sempre separati.',
-    },
-    services: {
-      label: 'Cosa faccio', h2: 'Servizi',
-      items: [
-        { n:'01', title:'Siti web moderni', desc:'Vetrine, siti per ristoranti e B&B che convertono i visitatori in clienti. Veloci, curati, ottimizzati per mobile.' },
-        { n:'02', title:'Web app su misura', desc:'Strumenti digitali costruiti intorno al tuo business. Non soluzioni preconfezionate: software pensato per te.' },
-        { n:'03', title:'App mobile iOS & Android', desc:'La tua attività sempre accessibile dai clienti. App native o cross-platform, fluide e intuitive.' },
-      ],
+    lodge: {
+      label: '04 · In lavorazione', status: 'In sviluppo',
+      h2a: 'Camere e ristorante,', h2em: 'in un solo sistema.',
+      m1: 'Web app · tablet', m2: 'Telefono in sala', m3: 'Widget prenotazioni',
+      desc: 'LodgeOS è il gestionale per agriturismi, B&B e piccoli hotel con ristorante: prenoti una camera in mezza pensione e le cene compaiono da sole in sala, giorno per giorno.',
+      f1: 'B&B, mezza pensione e pensione completa creano da soli i coperti.',
+      f2: 'Servizio in sala su tablet, con pianta e timeline della serata.',
+      f3: 'Menu con i 14 allergeni UE e prenotazioni online.',
+      visit: 'Visita lodgeos.it ↗',
     },
     process: {
-      label: 'Come lavoro', h2a: 'Processo semplice,', h2b: 'risultati concreti.',
-      steps: [
-        { title:'Analisi', desc:'Capisco il tuo business e definiamo insieme obiettivi chiari. Zero tecnicismi, tutto trasparente.' },
-        { title:'Sviluppo', desc:'Realizzo il prodotto in modo rapido. Ti tengo aggiornato ad ogni fase, senza sorprese.' },
-        { title:'Consegna & Supporto', desc:'Lancio, assistenza tecnica e ottimizzazione continua. Non sparisco dopo la consegna.' },
-      ],
+      label: '05 · Come lavoro',
+      h2a: 'Processo semplice,', h2em: 'risultati concreti.',
+      s1t: 'Analisi', s1d: 'Capisco il tuo business e definiamo insieme obiettivi chiari. Zero tecnicismi, tutto trasparente.',
+      s2t: 'Sviluppo', s2d: 'Realizzo il prodotto in modo rapido e ti aggiorno a ogni fase, senza sorprese.',
+      s3t: 'Consegna & supporto', s3d: 'Lancio, assistenza tecnica e ottimizzazione continua. Non sparisco dopo la consegna.',
     },
+    experience: {
+      label: 'Esperienza', h2a: 'Dove ho', h2em: 'lavorato.',
+      intro: 'Sono Paolo Ferrari. Lavoro direttamente con le aziende, senza agenzie di mezzo: esecuzione rapida, comunicazione trasparente, attenzione maniacale ai dettagli.',
+      role: 'Sviluppatore iOS',
+      smPeriod: 'Mar 2025 – oggi',
+      smDesc: 'Sviluppo e mantengo diverse app iOS end-to-end, dai moduli di monetizzazione ai prodotti completi, modernizzando codice legacy e realizzando nuove funzionalità.',
+      accPeriod: 'Set 2022 – Feb 2025',
+      accDesc: 'App iOS per grandi marchi, su più prodotti in parallelo, a stretto contatto con design e team di prodotto.',
+      tag1: 'Italia.it · Ministero del Turismo',
+    },
+    stats: { title: 'In numeri', s1: 'anni di sviluppo iOS', s2: 'agenzie di mezzo', s3: 'per una risposta', s4: 'lingue in cui lavoro' },
     contact: {
-      label: 'Contatti', h2: 'Parliamone', h2em: '.',
-      sub: 'Hai un progetto in mente? Scrivimi senza impegno. Rispondo entro 24 ore.',
+      label: 'Contatti', h2: 'Tocca a te',
+      sub: 'Hai un progetto in mente? Scrivimi senza impegno, rispondo entro 24 ore.',
+      alt: 'oppure scrivi a',
+      formAria: 'Modulo di contatto',
       nameLabel: 'Nome', emailLabel: 'Email', msgLabel: 'Messaggio',
-      namePh: 'Il tuo nome', emailPh: 'La tua email', msgPh: 'Raccontami del tuo progetto...',
-      send: 'Invia messaggio →', sending: 'Invio in corso…',
-      consent: 'Ho letto la',
-      privacyLink: 'Privacy Policy',
+      namePh: 'Il tuo nome', emailPh: 'La tua email', msgPh: 'Raccontami del tuo progetto…',
+      consent: 'Ho letto la', privacyLink: 'Privacy Policy',
       consentEnd: 'e acconsento al trattamento dei miei dati per essere ricontattato.',
+      send: 'Invia messaggio →', sending: 'Invio in corso…',
       successTitle: 'Messaggio inviato!', successSub: 'Ti rispondo al più presto. A presto, Paolo.',
-      alt: 'oppure scrivi direttamente a', or: 'oppure compila il modulo',
       errorGeneric: 'Errore di invio. Riprova tra qualche minuto o scrivimi direttamente a studio@madebypaolo.it.',
     },
-    footer: { copy: '© {year} Paolo Ferrari · Tutti i diritti riservati', privacy: 'Privacy Policy', imprint: 'Note legali' },
+    footer: { copy: '© {year} Paolo Ferrari · P.IVA IT04924620166', privacy: 'Privacy Policy', imprint: 'Note legali' },
   },
   en: {
     meta: {
@@ -1218,81 +643,78 @@ const COPY = {
       description: 'Freelance web and mobile developer creating modern websites, mobile apps, and digital experiences.',
     },
     a11y: { skip: 'Skip to main content' },
-    nav: { about:'About', experience:'Experience', projects:'Projects', next:'In the works', services:'Services', cta:'Contact me' },
+    nav: { work: 'Work', lodgeos: 'LodgeOS', process: 'Process', experience: 'Experience', cta: "Let's talk" },
+    stage: {
+      aria: "3D scene: phone, browser and tablet showing Paolo's projects, changing with each section",
+      hint: 'Tap or drag a device',
+      dot5: '05 Process',
+    },
     hero: {
-      h1a: 'I build modern', h1b: 'websites & apps', h1em: 'that work.',
-      sub: 'I work with restaurants, B&Bs, and local businesses to create digital products that deliver real results: more bookings, more leads, more customers.',
-      cta1: 'Contact me →', cta2: 'View projects',
       chip: 'Freelance web & mobile developer',
+      h1a: 'Every pixel,', h1em: 'made by hand.',
+      sub: 'Websites and mobile apps for restaurants, B&Bs and local businesses. Digital products that deliver real results: more bookings, more leads, more customers.',
+      cta1: "Let's talk →", cta2: 'See the work',
+      cue: 'Scroll to switch the screen on',
     },
-    about: {
-      label: 'About',
-      h2a: 'I build digital products', h2b: 'that work for you.',
-      body: "I'm Paolo Ferrari, a freelance developer specialising in websites and mobile apps. I work directly with businesses — no agency in between — to deliver fast, detail-driven digital products focused on real-world results.",
-      points: ['Direct collaboration, no agency layers','Fast execution and transparent communication','Obsessive attention to every detail'],
+    nike: {
+      h2a: 'Three screens,', h2em: 'one experience.',
+      m1: 'iOS app', m2: 'Android app', m3: 'Website',
+      desc: 'End-to-end digital product: iOS app, Android app and website. Refined experience and high performance in every detail, on every screen.',
     },
-    experience: {
-      label: 'Experience', h2: "Where I've worked",
-      items: [
-        { period: 'Mar 2025 – Present', company: 'Space Mushrooms', role: 'iOS Developer', current: true,
-          desc: 'I build and maintain several iOS apps end-to-end, from monetization modules to full standalone products — modernizing legacy code and shipping new features.' },
-        { period: 'Sep 2022 – Feb 2025', company: 'Accenture', role: 'iOS Developer',
-          desc: 'Built iOS apps for major brands, working across multiple products in parallel and closely with design and product teams.',
-          tags: ['Italia.it · Tourism Ministry', 'Moncler', 'Prada'] },
-      ],
+    robe: {
+      h2a: 'Industrial,', h2em: 'yet made to measure.',
+      m1: 'Website', m2: 'Mobile version',
+      desc: 'Website redesign for a company specialised in elastomer stamping for the food-contact sector. Industrial visual identity, bold typography and bilingual content.',
     },
-    projects: {
-      label: 'Projects', h2: 'Selected work',
-      p1desc: 'End-to-end digital product: iOS app, Android app, and website. Focused on refined user experience and high performance at every level.',
-      p2desc: 'Full website redesign for RO.BE 2000, a company specialized in elastomer stamping for the food-contact sector. Industrial visual identity, bold typography, and a bilingual content architecture.',
-      p3desc: 'Personal website for attorney Matteo Verdi Bertoldi, a Supreme Court lawyer specialized in civil and corporate law. Understated, authoritative design, a dedicated smartphone layout, bilingual IT / EN content, and carefully tuned technical SEO.',
-      openSite: 'Open site',
+    mv: {
+      h2a: 'Authoritative,', h2em: 'even on a phone.',
+      m1: 'Desktop', m2: 'Dedicated mobile layout', m3: 'Technical SEO',
+      desc: 'Personal website for a Supreme Court lawyer specialised in civil and corporate law. Understated, authoritative design, bilingual IT / EN content and a layout built specifically for smartphones.',
     },
-    next: {
-      label: 'In the works', h2: "What's next",
-      status: 'In development',
-      tagline: 'Your rooms and your restaurant, in one system.',
-      desc: 'Management software for agriturismi, B&Bs and small hotels with a restaurant: book a half-board stay and its dinners appear on the restaurant floor, day by day.',
-      visit: 'Visit lodgeos.it',
-      f1: 'Board plans linked to the restaurant: B&B, half board and full board create the covers on their own.',
-      f2: 'Room calendar with the day\'s arrivals, departures and housekeeping.',
-      f3: 'Restaurant service on a tablet, with the floor plan and the evening\'s timeline.',
-      f4: 'Events with their own layout, a menu with the 14 EU allergens, and online bookings.',
-      f5: 'Multiple properties, data always kept separate.',
-    },
-    services: {
-      label: 'What I do', h2: 'Services',
-      items: [
-        { n:'01', title:'Modern websites', desc:'Showcase sites for restaurants and B&Bs that convert visitors into customers. Fast, polished, mobile-first.' },
-        { n:'02', title:'Custom web apps', desc:'Digital tools built around your business — not off-the-shelf solutions, but software made for you.' },
-        { n:'03', title:'iOS & Android apps', desc:'Your business always within reach for your customers. Native or cross-platform, smooth and intuitive.' },
-      ],
+    lodge: {
+      label: '04 · In the works', status: 'In development',
+      h2a: 'Rooms and restaurant,', h2em: 'in one system.',
+      m1: 'Web app · tablet', m2: 'Phone on the floor', m3: 'Booking widget',
+      desc: 'LodgeOS is management software for agriturismi, B&Bs and small hotels with a restaurant: book a half-board stay and its dinners appear on the restaurant floor, day by day.',
+      f1: 'B&B, half board and full board create the covers on their own.',
+      f2: "Restaurant service on a tablet, with the floor plan and the evening's timeline.",
+      f3: 'A menu with the 14 EU allergens, and online bookings.',
+      visit: 'Visit lodgeos.it ↗',
     },
     process: {
-      label: 'How I work', h2a: 'Simple process,', h2b: 'real results.',
-      steps: [
-        { title:'Discovery', desc:'I learn about your business and we define clear goals together. No jargon, full transparency.' },
-        { title:'Build', desc:'I deliver the product quickly, keeping you updated at every step — no surprises.' },
-        { title:'Launch & Support', desc:"Deployment, technical support, and continuous improvement. I don't disappear after handoff." },
-      ],
+      label: '05 · How I work',
+      h2a: 'Simple process,', h2em: 'real results.',
+      s1t: 'Discovery', s1d: 'I learn about your business and we define clear goals together. No jargon, full transparency.',
+      s2t: 'Build', s2d: 'I deliver the product quickly and keep you updated at every step, no surprises.',
+      s3t: 'Launch & support', s3d: "Deployment, technical support and continuous improvement. I don't disappear after handoff.",
     },
+    experience: {
+      label: 'Experience', h2a: "Where I've", h2em: 'worked.',
+      intro: "I'm Paolo Ferrari. I work directly with businesses, no agency in between: fast execution, transparent communication, obsessive attention to detail.",
+      role: 'iOS Developer',
+      smPeriod: 'Mar 2025 – present',
+      smDesc: 'I build and maintain several iOS apps end-to-end, from monetization modules to full products, modernizing legacy code and shipping new features.',
+      accPeriod: 'Sep 2022 – Feb 2025',
+      accDesc: 'iOS apps for major brands, across several products in parallel, working closely with design and product teams.',
+      tag1: 'Italia.it · Tourism Ministry',
+    },
+    stats: { title: 'In numbers', s1: 'years of iOS development', s2: 'agencies in between', s3: 'to get a reply', s4: 'languages I work in' },
     contact: {
-      label: 'Contact', h2: "Let's talk", h2em: '.',
-      sub: 'Have a project in mind? Reach out — no commitment needed. I reply within 24 hours.',
+      label: 'Contact', h2: 'Your move',
+      sub: 'Have a project in mind? Write to me, no commitment. I reply within 24 hours.',
+      alt: 'or email',
+      formAria: 'Contact form',
       nameLabel: 'Name', emailLabel: 'Email', msgLabel: 'Message',
-      namePh: 'Your name', emailPh: 'Your email', msgPh: 'Tell me about your project...',
-      send: 'Send message →', sending: 'Sending…',
-      consent: 'I have read the',
-      privacyLink: 'Privacy Policy',
+      namePh: 'Your name', emailPh: 'Your email', msgPh: 'Tell me about your project…',
+      consent: 'I have read the', privacyLink: 'Privacy Policy',
       consentEnd: 'and consent to the processing of my data so I can be contacted back.',
+      send: 'Send message →', sending: 'Sending…',
       successTitle: 'Message sent!', successSub: "I'll get back to you soon. Talk soon, Paolo.",
-      alt: 'or email me directly at', or: 'or fill in the form',
       errorGeneric: 'Submission failed. Please try again in a few minutes, or email me directly at studio@madebypaolo.it.',
     },
-    footer: { copy: '© {year} Paolo Ferrari · All rights reserved', privacy: 'Privacy Policy', imprint: 'Legal notice' },
+    footer: { copy: '© {year} Paolo Ferrari · VAT IT04924620166', privacy: 'Privacy Policy', imprint: 'Legal notice' },
   },
 };
-
 const SUPPORTED_LANGS = ['it', 'en'];
 const urlParams = new URLSearchParams(window.location.search);
 const storedLang = (() => { try { return localStorage.getItem('lang'); } catch (e) { return null; } })();
@@ -1311,48 +733,6 @@ function persistLang() {
   if (lang === 'it') url.searchParams.delete('lang');
   else url.searchParams.set('lang', lang);
   window.history.replaceState({}, '', url);
-}
-
-function renderAboutPoints() {
-  const el = document.getElementById('about-points');
-  el.innerHTML = COPY[lang].about.points
-    .map(p => `<p class="about-point">${p}</p>`).join('');
-}
-
-function renderExperience() {
-  const el = document.getElementById('exp-list');
-  if (!el) return;
-  el.innerHTML = COPY[lang].experience.items.map((x, i) => `
-    <div class="exp-item${x.current ? ' current' : ''} reveal d${i+1} in">
-      <span class="exp-period">${x.period}</span>
-      <h3 class="exp-company">${x.company}</h3>
-      <p class="exp-role">${x.role}</p>
-      <p class="exp-desc">${x.desc}</p>
-      ${x.tags ? `<div class="exp-tags">${x.tags.map(t => `<span class="exp-tag">${t}</span>`).join('')}</div>` : ''}
-    </div>
-  `).join('');
-}
-
-function renderServices() {
-  const el = document.getElementById('services-grid');
-  el.innerHTML = COPY[lang].services.items.map((s, i) => `
-    <div class="service-card reveal d${i+1} in">
-      <div class="service-n">${s.n}</div>
-      <h3 class="service-title">${s.title}</h3>
-      <p class="service-desc">${s.desc}</p>
-    </div>
-  `).join('');
-}
-
-function renderProcess() {
-  const el = document.getElementById('process-grid');
-  el.innerHTML = COPY[lang].process.steps.map((s, i) => `
-    <div class="reveal d${i+1} in">
-      <div class="step-num${i === 0 ? ' active-step' : ''}">${String(i+1).padStart(2,'0')}</div>
-      <h3 class="step-title">${s.title}</h3>
-      <p class="step-desc">${s.desc}</p>
-    </div>
-  `).join('');
 }
 
 function applyTranslations() {
@@ -1379,12 +759,11 @@ function applyTranslations() {
     const v = getCopy(el.dataset.i18nPh);
     if (v !== undefined) el.placeholder = v;
   });
-  const footerCopy = document.getElementById('footer-copy');
-  if (footerCopy) footerCopy.textContent = COPY[lang].footer.copy.replace('{year}', new Date().getFullYear());
-  renderAboutPoints();
-  renderExperience();
-  renderServices();
-  renderProcess();
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const v = getCopy(el.dataset.i18nAria);
+    if (v !== undefined) el.setAttribute('aria-label', v);
+  });
+  document.getElementById('footer-copy').textContent = COPY[lang].footer.copy.replace('{year}', new Date().getFullYear());
 }
 
 function syncLangButtons() {
@@ -1403,44 +782,6 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     applyTranslations();
   });
 });
-
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
-
-const burger = document.getElementById('burger');
-const navLinks = document.getElementById('nav-links');
-const burgerIconOpen = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-const burgerIconClose = '<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4l14 14M18 4L4 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-
-function setMenu(open) {
-  navLinks.classList.toggle('open', open);
-  document.body.classList.toggle('menu-open', open);
-  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  burger.innerHTML = open ? burgerIconClose : burgerIconOpen;
-}
-burger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => setMenu(false));
-});
-
-// Mobile project rail: keep the "01 / 03" counter and the dots in sync with the swipe
-const projRail = document.getElementById('proj-rail');
-const projCount = document.getElementById('proj-count');
-const projDots = document.querySelectorAll('#proj-dots span');
-if (projRail) {
-  const cards = projRail.children;
-  const pad = (n) => String(n).padStart(2, '0');
-  const syncRail = () => {
-    const step = cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 1;
-    const i = Math.min(cards.length - 1, Math.max(0, Math.round(projRail.scrollLeft / step)));
-    projCount.textContent = `${pad(i + 1)} / ${pad(cards.length)}`;
-    projDots.forEach((d, j) => d.classList.toggle('on', j === i));
-  };
-  projRail.addEventListener('scroll', syncRail, { passive: true });
-  syncRail();
-}
 
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -1482,16 +823,15 @@ form.addEventListener('submit', async (e) => {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     form.style.display = 'none';
     successBox.style.display = 'block';
-    successBox.classList.add('in');
   } catch (err) {
     console.error('Contact submission failed:', err);
     submitBtn.disabled = false;
     submitBtn.textContent = COPY[lang].contact.send;
-    alert(COPY[lang].contact.errorGeneric || 'Errore di invio. Riprova o scrivimi via email.');
+    alert(COPY[lang].contact.errorGeneric);
   }
 });
 
-['name','email','msg'].forEach(n => {
+['name', 'email', 'msg'].forEach(n => {
   const el = form.querySelector(`[name="${n}"]`);
   el.addEventListener('input', () => el.classList.remove('err'));
 });
@@ -1502,6 +842,7 @@ form.querySelector('[name="consent"]').addEventListener('change', (e) => {
 syncLangButtons();
 applyTranslations();
 </script>
-
+<script src="/vendor/three.min.js" defer></script>
+<script src="/js/scene.js" defer></script>
 </body>
 </html>
