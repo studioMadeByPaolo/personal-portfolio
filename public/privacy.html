@@ -7,7 +7,8 @@
 <meta name="description" content="Informativa sulla privacy ai sensi del GDPR (Regolamento UE 2016/679) per il sito madebypaolo.it.">
 <meta name="robots" content="noindex, follow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#C05728">
+<meta name="theme-color" content="#110D0A">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://www.madebypaolo.it/privacy.html">
 <link rel="alternate" hreflang="it" href="https://www.madebypaolo.it/privacy.html">
 <link rel="alternate" hreflang="en" href="https://www.madebypaolo.it/privacy.html?lang=en">
@@ -26,92 +27,73 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #F7F5F1;
-  --bg2: #EEEAE3;
-  --text: #1C1917;
-  --text-muted: #7C7268;
-  --accent: #C05728;
-  --border: #E2DDD6;
+  --bg: #110D0A;
+  --bg2: #17120E;
+  --text: #F2E9DE;
+  --text-soft: #CFC3B5;
+  --text-muted: #A89A8C;
+  --accent: #E07A45;
+  --on-accent: #1A0F09;
+  --line: rgba(242,233,222,.12);
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
-  --pad: clamp(24px, 6vw, 88px);
-  --max-w: 760px;
+  --pad: clamp(16px, 5vw, 72px);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: var(--font-body); line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
+html { background: var(--bg); }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+em { font-style: italic; color: var(--accent); }
+.nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; padding: 0 var(--pad); background: rgba(17,13,10,.72); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(242,233,222,.07); }
+.nav-logo { white-space: nowrap; font-family: var(--font-display); font-size: 26px; line-height: 1; color: var(--text); text-decoration: none; }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.nav-back { font-size: 14px; color: #B9AC9E; text-decoration: none; transition: color .2s; }
+.nav-back:hover { color: var(--text); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+@media (max-width: 520px) {
+  .nav-logo { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 a:hover { text-decoration: none; }
-.nav {
-  padding: 20px var(--pad); display: flex; align-items: center;
-  justify-content: space-between; border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-size: .875rem; font-weight: 600; color: var(--text); text-decoration: none; }
-.nav-back { font-size: .875rem; color: var(--text-muted); }
-.nav-back:hover { color: var(--text); }
-.lang-toggle {
-  display: inline-flex; align-items: center;
-  background: rgba(28,25,23,.06); border-radius: 100px;
-  padding: 3px; gap: 1px; margin-left: 14px; vertical-align: middle;
-}
-.lang-btn {
-  padding: 4px 11px; border-radius: 100px; border: none;
-  font-family: var(--font-body); font-size: .75rem; font-weight: 500;
-  letter-spacing: .04em; cursor: pointer; transition: background .18s, color .18s;
-  background: transparent; color: var(--text-muted);
-}
-.lang-btn.active { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,.10); }
-main {
-  max-width: var(--max-w); margin: 0 auto;
-  padding: clamp(48px, 8vw, 96px) var(--pad);
-}
-h1 {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 1.1;
-  margin-bottom: .5rem; letter-spacing: -.01em;
-}
-.subtitle { color: var(--text-muted); font-size: .9rem; margin-bottom: 3rem; }
-h2 {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.25;
-  margin: 2.5rem 0 .75rem;
-}
-h3 {
-  font-family: var(--font-body); font-weight: 600;
-  font-size: 1rem; margin: 1.5rem 0 .5rem;
-}
-p, ul { color: var(--text); font-size: .95rem; margin-bottom: 1rem; font-weight: 300; }
+.nav a { text-decoration: none; }
+.lang-toggle { display: flex; gap: 2px; }
+.lang-btn { background: none; border: 0; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: .08em; padding: 10px 6px; color: #B9AC9E; }
+.lang-btn.active { color: var(--text); }
+main { max-width: 760px; margin: 0 auto; padding: clamp(56px, 9vw, 112px) var(--pad); }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 7vw, 84px); line-height: .95; letter-spacing: -.02em; margin-bottom: 18px; }
+.subtitle { color: var(--text-muted); font-size: .9rem; margin-bottom: 3.5rem; }
+h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 3.4vw, 38px); line-height: 1.15; margin: 3rem 0 1rem; padding-top: 2.25rem; border-top: 1px solid var(--line); }
+h3 { font-size: 1rem; font-weight: 600; margin: 1.75rem 0 .5rem; }
+p, ul { color: var(--text-soft); font-size: .975rem; margin-bottom: 1rem; }
+strong { color: var(--text); font-weight: 500; }
 ul { padding-left: 1.25rem; }
-li { margin-bottom: .35rem; }
+li { margin-bottom: .4rem; }
+li::marker { color: var(--accent); }
+code { font-family: ui-monospace, monospace; font-size: .88em; padding: 1px 6px; border-radius: 4px; background: var(--bg2); border: 1px solid var(--line); color: var(--text); }
 .muted { color: var(--text-muted); font-size: .85rem; }
-hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
-.footer {
-  border-top: 1px solid var(--border); padding: 24px var(--pad);
-  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-  font-size: .8125rem; color: var(--text-muted);
-}
+hr { border: 0; height: 1px; background: var(--line); margin: 2.5rem 0; }
+.fill { display: inline-block; padding: 0 6px; background: rgba(224,122,69,.14); color: var(--accent); border-radius: 4px; font-family: ui-monospace, monospace; font-size: .85em; font-weight: 500; }
+.footer { border-top: 1px solid rgba(242,233,222,.08); padding: 28px var(--pad); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: var(--text-muted); }
 .lang-section { display: none; }
 .lang-section.active { display: block; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
+@media (max-width: 520px) {
+  .nav-back { display: none; }
 }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <a href="/" class="nav-logo">madebypaolo.it</a>
-  <span>
+  <a href="/" class="nav-logo">Made by <em>Paolo</em></a>
+  <div class="nav-right">
     <a href="/" class="nav-back" data-i18n="back">← Torna alla home</a>
     <span class="lang-toggle" role="group" aria-label="Language">
-      <button class="lang-btn active" data-lang="it" aria-pressed="true">IT</button>
-      <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      <button class="lang-btn active" data-lang="it" aria-pressed="true" aria-label="Italiano">IT</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
     </span>
-  </span>
+  </div>
 </nav>
 
 <main>
