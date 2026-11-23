@@ -237,6 +237,7 @@ em { font-style: italic; color: var(--accent); }
 .hint { position: absolute; right: clamp(16px,3vw,40px); top: 96px; display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .06em; color: var(--text-muted); }
 .step { position: relative; z-index: 1; min-height: 100vh; display: flex; align-items: center; padding: 96px 0; pointer-events: none; }
 .copy { width: min(540px, 46%); pointer-events: auto; }
+.mock { display: none; }
 .cue { display: flex; align-items: center; gap: 14px; margin-top: 64px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); }
 .cue-track { position: relative; width: 1px; height: 44px; background: rgba(242,233,222,.15); }
 .cue-track::after { content: ''; position: absolute; inset: 0; background: var(--accent); transform-origin: top; animation: cue 2.2s ease-in-out infinite; }
@@ -303,16 +304,15 @@ em { font-style: italic; color: var(--accent); }
 @media (max-width: 820px) {
   .nav-links, .hide-sm { display: none !important; }
   .nav-logo { font-size: 22px; }
-  /* split screen: devices pinned under the nav, copy scrolls in the lower half and slides under them */
-  .stage { top: 68px; height: 44vh; height: 44svh; margin-bottom: -44vh; margin-bottom: -44svh; z-index: 2; overflow: visible; background: var(--bg); }
-  .stage::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 48px; background: linear-gradient(var(--bg), rgba(17,13,10,0)); pointer-events: none; }
-  .step { min-height: 72vh; min-height: 72svh; align-items: flex-start; padding: 32px 0 12vh; scroll-margin-top: calc(68px + 44svh); }
-  .step[data-step="0"] { min-height: 0; padding-top: calc(44vh + 24px); padding-top: calc(44svh + 24px); }
+  /* phones: no 3D stage (three.js is not even loaded), each project shows a flat mockup instead */
+  .stage { display: none; }
+  .step { min-height: 0; display: block; padding: 64px 0; pointer-events: auto; border-top: 1px solid rgba(242,233,222,.08); }
+  .step[data-step="0"] { padding: 56px 0 72px; border-top: 0; }
   .hero-sub { font-size: 16px; }
   .copy { width: 100%; }
-  .glow { background: radial-gradient(70% 60% at 50% 50%, rgba(224,122,69,.16), rgba(224,122,69,0) 70%); }
-  .fallback { justify-content: center; align-items: center; padding: 0; }
-  .fallback img { width: 160px; }
+  .mock { display: block; position: relative; margin-bottom: 32px; padding: 0 18% 14% 0; }
+  .mock-web { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(242,233,222,.12); box-shadow: 0 24px 48px rgba(0,0,0,.45); }
+  .mock-phone { position: absolute; right: 0; bottom: 0; width: 30%; height: auto; aspect-ratio: 9 / 19.5; object-fit: cover; object-position: top; border-radius: 18px; border: 4px solid var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,.5); }
   .split, .form-row { grid-template-columns: minmax(0, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -393,6 +393,10 @@ em { font-style: italic; color: var(--accent); }
   <section class="step" data-step="1" id="lavori" aria-labelledby="s1-title">
     <div class="wrap">
       <div class="copy reveal">
+        <div class="mock" aria-hidden="true">
+          <img class="mock-web" src="images/nikecountryretreat_website_v2.webp" alt="" width="960" height="602" loading="lazy" decoding="async">
+          <img class="mock-phone" src="images/nikecountryretreat_mobile_1.webp" alt="" width="480" height="1044" loading="lazy" decoding="async">
+        </div>
         <p class="label">01 · Nike Country Retreat</p>
         <h2 id="s1-title" class="h2"><span data-i18n="nike.h2a">Tre schermi,</span> <em data-i18n="nike.h2em">un’unica esperienza.</em></h2>
         <p class="modes">
@@ -413,6 +417,10 @@ em { font-style: italic; color: var(--accent); }
   <section class="step" data-step="2" aria-labelledby="s2-title">
     <div class="wrap">
       <div class="copy reveal">
+        <div class="mock" aria-hidden="true">
+          <img class="mock-web" src="images/robe2000_website_1.webp" alt="" width="1200" height="753" loading="lazy" decoding="async">
+          <img class="mock-phone" src="images/robe2000_mobile.jpg" alt="" width="480" height="1041" loading="lazy" decoding="async">
+        </div>
         <p class="label">02 · RO.BE 2000</p>
         <h2 id="s2-title" class="h2"><span data-i18n="robe.h2a">Industriale,</span> <em data-i18n="robe.h2em">ma su misura.</em></h2>
         <p class="modes">
@@ -429,6 +437,10 @@ em { font-style: italic; color: var(--accent); }
   <section class="step" data-step="3" aria-labelledby="s3-title">
     <div class="wrap">
       <div class="copy reveal">
+        <div class="mock" aria-hidden="true">
+          <img class="mock-web" src="images/matteoverdi_website.webp" alt="" width="1200" height="753" loading="lazy" decoding="async">
+          <img class="mock-phone" src="images/matteoverdi_mobile_1.webp" alt="" width="480" height="1039" loading="lazy" decoding="async">
+        </div>
         <p class="label">03 · Matteo Verdi Bertoldi</p>
         <h2 id="s3-title" class="h2"><span data-i18n="mv.h2a">Autorevole,</span> <em data-i18n="mv.h2em">anche dal telefono.</em></h2>
         <p class="modes">
@@ -445,6 +457,10 @@ em { font-style: italic; color: var(--accent); }
   <section class="step" data-step="4" id="lodgeos" aria-labelledby="s4-title">
     <div class="wrap">
       <div class="copy reveal">
+        <div class="mock" aria-hidden="true">
+          <img class="mock-web" src="images/lodgeos_service.webp" alt="" width="1440" height="900" loading="lazy" decoding="async">
+          <img class="mock-phone" src="images/lodgeos_floor_mobile.webp" alt="" width="780" height="1688" loading="lazy" decoding="async">
+        </div>
         <p class="label"><span data-i18n="lodge.label">04 · In lavorazione</span> <span class="status"><span class="pulse"></span><span data-i18n="lodge.status">In sviluppo</span></span></p>
         <h2 id="s4-title" class="h2"><span data-i18n="lodge.h2a">Camere e ristorante,</span> <em data-i18n="lodge.h2em">in un solo sistema.</em></h2>
         <p class="modes">
@@ -849,7 +865,15 @@ form.querySelector('[name="consent"]').addEventListener('change', (e) => {
 syncLangButtons();
 applyTranslations();
 </script>
-<script src="/vendor/three.min.js" defer></script>
-<script src="/js/scene.js" defer></script>
+<script>
+  // The 3D stage is hidden on phones, so three.js (~600KB) loads only when the desktop layout is shown.
+  (function () {
+    var mq = window.matchMedia('(min-width: 821px)'), done = false;
+    var add = function (src, next) { var el = document.createElement('script'); el.src = src; el.onload = next; el.onerror = function () { document.body.classList.add('no-gl'); }; document.body.appendChild(el); };
+    var load = function () { if (done || !mq.matches) return; done = true; add('/vendor/three.min.js', function () { add('/js/scene.js'); }); };
+    load();
+    mq.addEventListener ? mq.addEventListener('change', load) : mq.addListener(load);
+  })();
+</script>
 </body>
 </html>

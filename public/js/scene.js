@@ -12,16 +12,16 @@
     dots.forEach((d) => d.classList.toggle('on', Number(d.dataset.i) === i));
   };
 
-  // Active section = the last `.step` whose top passed the reading line (lower on phones, where the stage covers the top half).
-  const pick = () => {
-    const line = innerHeight * (innerWidth < 820 ? 0.75 : 0.5);
+  // Active section = the most visible `.step`.
+  const ratios = steps.map(() => 0);
+  const thresholds = Array.from({ length: 21 }, (_, i) => i / 20);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { ratios[steps.indexOf(e.target)] = e.isIntersecting ? e.intersectionRatio : 0; });
     let best = 0;
-    steps.forEach((el, i) => { if (el.getBoundingClientRect().top < line) best = i; });
+    for (let i = 1; i < ratios.length; i++) if (ratios[i] > ratios[best] + 0.001) best = i;
     if (best !== step) setStep(best);
-  };
-  window.addEventListener('scroll', pick, { passive: true });
-  window.addEventListener('resize', pick);
-  pick();
+  }, { threshold: thresholds });
+  steps.forEach((el) => io.observe(el));
 
   const T = window.THREE;
   let renderer;
@@ -199,8 +199,8 @@
     browser: [[2.75, 0.75, -2.6, 0.05, -0.42, 0.02, 0.78], [2.1, 0.85, -2.4, 0.04, -0.4, 0, 0.85], [1.8, 0.15, -0.2, 0, -0.3, 0, 1.0], [2.0, 0.35, -0.9, 0.02, -0.34, 0, 0.95], [2.2, 0.8, -3.5, 0, -0.3, 0, H0], [2.05, 0.8, -1.5, 0.04, -0.35, 0.02, 0.62]],
     tablet: [[2, -3, 0, 0, 0, 0, H0], [2, -3, 0, 0, 0, 0, H0], [2, -3, 0, 0, 0, 0, H0], [2, -1.5, -1, 0, -0.3, 0, H0], [1.75, 0.1, 0.1, -0.18, -0.3, 0.02, 1], [1.05, -0.62, 0.2, -0.15, -0.25, 0.02, 0.58]],
   };
-  // On phones the group is recentred in the half-height stage, per section.
-  const CENTER = [1.9, 1.9, 2.3, 2.4, 2.3, 2.2];
+  // On phones the group is recentred above the copy card, per section.
+  const CENTER = [1.9, 1.9, 2.3, 2.4, 2.3, 2.0];
   const objs = [[phoneA, 'phoneA'], [phoneB, 'phoneB'], [browser, 'browser'], [tablet, 'tablet']];
   const outers = objs.map((o) => o[0]);
   objs.forEach(([o, k]) => {
@@ -218,7 +218,7 @@
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     mob = w < 820 || w / h < 0.9;
-    rig.position.z = mob ? 2 : 0;
+    rig.position.z = mob ? -2.8 : 0;
   };
   size();
   new ResizeObserver(size).observe(stage);
@@ -308,7 +308,7 @@
     });
     const pk = Math.min(1, dt * 2.5);
     rig.position.x += ((mob ? -CENTER[step] : 0) - rig.position.x) * k;
-    rig.position.y += ((mob ? -0.15 : 0) - rig.position.y) * k;
+    rig.position.y += ((mob ? (step === 0 ? 1.75 : 1.3) : 0) - rig.position.y) * k;
     rig.rotation.y += (px * 0.1 * idle - rig.rotation.y) * pk;
     rig.rotation.x += (py * 0.05 * idle - rig.rotation.x) * pk;
     renderer.render(scene, camera);
